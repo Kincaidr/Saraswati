@@ -28,6 +28,8 @@ def draw_ds9_lines(ax, regfile, color='black', linewidth=2):
             except ValueError:
                 print(f"Skipping invalid line: {line}")
 
+sdss
+
 def scale_bar(z,pix_scale):
     D_A = cosmo.angular_diameter_distance(z).value
     scale_2Mpc_arcsec = (2 / D_A) * (180 / 3.141592) * 3600 
