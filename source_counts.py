@@ -62,7 +62,7 @@ def get_counts(real_cat, nbins):
     #mask=(rec_cat['S_Code'] =='S') #| (rec_cat['S_Code'] =='C') #| (rec_cat['S_Code'] =='M')
     flux=rec_cat['Total_flux']
     flux=flux*(counts_freq/data_freq)**Spectral_Index
-    Range_x = 10**np.linspace(start=np.log10(flux.min()), stop=np.log10(0.03), num=nbins+1)
+    Range_x = 10**np.linspace(start=np.log10(flux.min()), stop=np.log10(0.1), num=nbins+1)
     #Range_x = np.percentile(flux, np.linspace(0, 80, nbins + 1))
     centres = (Range_x[0:-1] + Range_x[1:]) / 2.0
     difflr=np.diff(Range_x)
@@ -81,7 +81,7 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     x1_superCLASS=SuperCLASS_lit[:,0]
     x2_superCLASS=SuperCLASS_lit[:,1]
     xc_superCLASS=SuperCLASS_lit[:,2]
-    N_superCLASS=SuperCLASS_lit[:,3]
+    N_superCLASS=SuperCLASS_lit[:,4]
     flux1=scale_flux(x1_superCLASS)*1e-3
     flux2=scale_flux(x2_superCLASS)*1e-3
     flux_xc=scale_flux(xc_superCLASS)*1e-3
@@ -104,16 +104,18 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     S=np.logspace(-2,3,1000) 
     plt.figure(figsize=(10, 7)) 
     plt.plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz Bondi fitted (Bondi +2008)')
-    #plt.plot(S,10**SCs_CLASS(S*1e-3),label='Super-CLASS Risely fitted (Risely +2016)')
-    #plt.scatter(centres_CLASS*1e3,counts_norm_CLASS,label='SuperCLASS GMRT 325MHz (Risely +2016)',marker='o',color='red')
+    plt.plot(S,10**SCs_CLASS(S*1e-3),label='Super-CLASS Risely fitted (Risely +2016)')
+    plt.scatter(centres_CLASS*1e3,counts_norm_CLASS,label='SuperCLASS GMRT 325MHz (Risely +2016)',marker='o',color='red')
     plt.errorbar(centres[0]*1e3, counts_norm[0],yerr=counts_err[0],color='#ADD8E6' ,fmt='o',markersize=4,alpha=1,label=f'uncorrected A2631 MeerKAT 1.28GHz (This paper)')
-    plt.errorbar(centres[1]*1e3, counts_norm[1],yerr=counts_err[1],color='#F08080' ,fmt='o',markersize=4,alpha=1,label=f'uncorrected Zwcl2341 MeerKAT 1.28GHz (This paper)')
+    plt.errorbar(centres[1]*1e3, counts_norm[1],yerr=counts_err[1],color="#DA6969" ,fmt='o',markersize=4,alpha=1,label=f'uncorrected Zwcl2341 MeerKAT 1.28GHz (This paper)')
     plt.errorbar(centres[0]*1e3, counts_norm[0]*completeness_corr[0],yerr=counts_err[0],xerr=deltaS[0],color='blue',label=f'A2631 MeerKAT 1.28GHz (This paper)' ,fmt='+',markersize=8,alpha=1)   
     plt.errorbar(centres[1]*1e3, counts_norm[1]*completeness_corr[1],yerr=counts_err[1],xerr=deltaS[1],color='red',label=f'Zwcl2341 MeerKAT 1.28GHz (This paper)' ,fmt='+',markersize=8,alpha=1) 
     #plt.errorbar(centres*1e3, counts_norm*completeness_corr,yerr=counts_err,color='orange',label=f'This paper corrected source counts' ,fmt='+')   
     plt.errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='purple',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.3)
     plt.errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='*',color='orange',label='DEEP2 MeerKAT 1.28GHz  (Mauch +2019)',alpha=0.7)
     #plt.errorbar(x_LoTSS,y_LoTSS,yerr=[y_LoTSS_err_up, y_LoTSS_err_down], fmt='*',color='orange',label='LoTSS 150MHz  (Mandal +2019)',alpha=0.5)
+    plt.axvline(5*10e-3,linestyle='--',color='blue',alpha=1)
+    plt.axvline(5*16e-3,linestyle='--',color='red',alpha=1)
     plt.xscale('log')
     plt.yscale('log')
     plt.ylim(10**-3,10**4)
@@ -124,7 +126,7 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     plt.tick_params(axis='both', which='minor', labelsize=15, length=3, width=1)
     plt.legend()
     plt.tight_layout()
-    plt.savefig('plots/Source_Counts_cone.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
+    plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/Source_Counts.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
     plt.show()
     plt.close()
 
@@ -140,8 +142,8 @@ if __name__ == "__main__":
     source_count_literature='de_zotti.txt'
     source_count_literature_DEEP='MeerKAT_deep.txt'
     source_count_literature_SuperCLASS='SuperCLASS_source_counts.txt'
-    survey_area=(45/60)*(45/60)
-    nbins=20
+    survey_area=1.65# (0.7*0.73*np.pi) in square degrees
+    nbins=23
     counts_freq=1.4
     data_freq=1.28  
     Spectral_Index=-0.7
@@ -156,9 +158,9 @@ if __name__ == "__main__":
     numbers_array=[]
     for name in names:
         resolution_bias_file=name+'_resolution_bias_correction.txt'
-        completeness_file = name+"_visib_correction.txt"
+        completeness_file = name+'/'+"visib_correction_cut.txt"
         false_detection_file='false_detection_correction.txt'
-        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_srl.fits'   
+        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_cut_srl.fits'   
         print( 'Real catalog is',real_catalog )
         centres,counts_norm,counts_err,deltaS, num=get_counts(real_catalog,nbins)
         numbers_array.append(num)

@@ -20,12 +20,11 @@ def image_analyse(fits_image):
     if len(image_data.shape) > 2:
         image_data = image_data[0, 0,:, :] 
         
-    sigma=8
+    sigma=10
     vmin=0.3*sigma
     vmax=10*sigma
 
     return(image_data,vmin, vmax, wcs)
-
 
 def draw_ds9_lines(ax, regfile, color='black', linewidth=2):
     """
@@ -54,17 +53,19 @@ def plot(fits_image1, name, regfile):
     axes.set_ylabel('Dec (J2000)', size=18)
     axes.tick_params(axis='both', which='major', labelsize=13, length=5, width=1)
     draw_ds9_lines(axes, regfile, color='black', linewidth=1)    
+    draw_ds9_lines(axes, region_file_2, color='blue', linewidth=1)    
     plt.subplots_adjust(left=0.1, right=0.85, top=0.90, bottom=0.05) 
-    plt.savefig('plots/'+name+'_tessel_image.png', bbox_inches='tight', pad_inches=0.1, dpi=300)
+    plt.savefig(plots+name+'_tessel_image.png', bbox_inches='tight', pad_inches=0.1, dpi=300)
     plt.show()
 
 
 if "__main__":
-    name='Zwcl2341'
+    name='A2631'
     path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'
-    plots='/home/kincaid/Desktop/Saraswati_codes/'+name+'/plots/'   
-    #fits_image = path+ 'image_DI_Clustered.DeeperDeconv.AP.app.restored.fits'
+    plots='/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/'   
+    #fits_image = path+ 'mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.fits'
     fits_image =path+'image_DI_Clustered.DeeperDeconv.AP.app.restored.fits'
     # region_file= path+'image_DI_Clustered.tessel_facet_all.reg'
     region_file= path+name+'.tessel_facet_all.reg'
+    region_file_2= path+'kms_regions_X.reg'
     plot( fits_image,name, region_file)

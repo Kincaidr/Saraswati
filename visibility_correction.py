@@ -12,7 +12,7 @@ def visib_plot(real_cat, fits_image,name):
 
     if len(image_data.shape) > 2:
         image_data = image_data[0, 0,:, :] 
-
+   
     mask=np.isnan(image_data)
     image_data=image_data[~mask]
     header = fits.getheader(fits_image)
@@ -47,13 +47,17 @@ def visib_plot(real_cat, fits_image,name):
     
 def completeness_file(output_filename,inj_sources, no_simulations ):
     data = np.loadtxt(output_filename )
-    rec_counts = np.sum(data[1:21, :], axis=0)
     bin_centres = data[0, :]
+    old_counts = data[1:, :] 
+    new_counts = np.zeros(old_counts.shape)
+    for i in range(len(old_counts[:,0])):
+        for j in range(len(old_counts[0,:])):
+            #breakpoint()
+            new_counts[i][j] = old_counts[i][j]-(false_sources)
 
-    for i in range(len(rec_counts)):
-        if rec_counts[i] > inj_sources*no_simulations:
-            rec_counts[i] = inj_sources*no_simulations
-
+    rec_counts = np.sum(new_counts[0:, :], axis=0)
+    corr =(np.max(rec_counts) -(inj_sources*no_simulations)) # Ensure no negative counts
+    rec_counts = rec_counts - corr
     print("Bin Centres:", bin_centres)
     print("Summed Recovered Counts:", rec_counts)
     inj_sources_tot=np.full(nbins,inj_sources*no_simulations)
@@ -76,7 +80,6 @@ def get_data(visibility_correction_file,  completeness):
     comp=comp_file[:,1]
     comp_bin=comp_file[:,0]
     comp_err=comp_file[:,2]
-    breakpoint()
     f=interp1d(visib_bin, visib_scale, bounds_error=False, fill_value="extrapolate")
     visib_new=f(comp_bin)
     comp_err=comp_err
@@ -84,7 +87,7 @@ def get_data(visibility_correction_file,  completeness):
     f=interp1d(comp_bin, comp_corr, bounds_error=False, fill_value="extrapolate")
     comp_corr_new=f(comp_bin)
     
-    with open(name+'_visib_correction.txt', "w") as file:
+    with open(name+'/'+'visib_correction_cut.txt', "w") as file:
         for bin, co, co_corr, err in zip(comp_bin,comp,comp_corr_new, comp_err ):
             file.write(f"{bin} {co} {co_corr} {err}\n")
 
@@ -92,10 +95,11 @@ if "__name__":
     inj_sources=500
     no_simulations=10
     nbins=30
-    name='A2631'
-    fits_image = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'+name+'_rms_map.fits'   
-    real_cat = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_srl.fits'
-    completeness_filename = name+"_recovered_counts_table_full.txt"
+    name='Zwcl2341'
+    false_sources=205
+    fits_image = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'+name+'_cut_rms_map.fits'   
+    real_cat = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_cut_srl.fits'
+    completeness_filename = name+'/'+"recovered_counts_table_cut.txt"
     visibility_correction_file=visib_plot(real_cat, fits_image, name)
     completeness=completeness_file(completeness_filename,inj_sources, no_simulations )
     get_data(visibility_correction_file, completeness)
