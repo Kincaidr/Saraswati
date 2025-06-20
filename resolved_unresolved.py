@@ -102,7 +102,7 @@ def plot_curve(catalog,rms, results, method, output_plot):
     plt.tight_layout()
     plt.legend()
     output_name=name+'_resolved_unresolved.png'
-    plt.savefig('plots/'+output_name)
+    plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/'+output_name)
     print(output_plot+output_name + ' saved')
 
 
