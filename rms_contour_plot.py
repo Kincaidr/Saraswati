@@ -5,12 +5,10 @@ from scipy.ndimage import gaussian_filter
 from astropy.wcs import WCS
 
 def plot(fits_image, path, name):
-
     hdu = fits.open(fits_image)[0]
     header = fits.getheader(fits_image)
     wcs = WCS(header)
     wcs=wcs[0,0,:,:]
-
     image_data = hdu.data
 
     if len(image_data.shape) > 2:
@@ -30,15 +28,14 @@ def plot(fits_image, path, name):
     colorbar.set_label(r'RMS ($\mu$Jy/Beam)', fontsize=18, color='black')
     ax.set_xlabel('RA (J2000)',size=17 )
     ax.set_ylabel('Dec (J2000)', size=17)
-    ax.set_xlim(1200, 4800)  # Set x-axis limits (change to your desired range)
-    ax.set_ylim(1200, 4800)  #
+    # ax.set_xlim(1200, 4800)  # Set x-axis limits (change to your desired range)
+    # ax.set_ylim(1200, 4800)  #
     plt.savefig(outname+name+'_rms_contour_map.png', bbox_inches='tight', pad_inches=0)
     plt.show() 
 
 if "__main__":
     name='Zwcl2341'
     path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'
-    outname='/home/kincaid/Desktop/Saraswati_codes/plots/'
-    fits_image = path+name+'_full_rms_map.fits'
-
+    outname='/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/'
+    fits_image = path+name+'_cut_rms_map.fits'
     plot(fits_image, path, name)

@@ -25,7 +25,7 @@ def plot(areas,full_areas, rmsmin):
     ax1.tick_params(axis='both', which='major', direction='in', length=8, width=1.5, labelsize=14)
     ax1.tick_params(axis='both', which='minor', direction='in', length=4, width=1, labelsize=14)
 
-    ax1.set_xlim(0,1)
+    ax1.set_xlim(0,0.1)
     ax2 = ax1.twinx()
     ax2.set_ylim((ax1.get_ylim()[0] /full_areas[0])*100, ax1.get_ylim()[1]/full_areas[0] * 100)
     ax2.set_ylabel('Area Percent (%)', size=20)
@@ -33,7 +33,7 @@ def plot(areas,full_areas, rmsmin):
     ax2.tick_params(axis='both', which='minor', direction='in', length=4, width=1, labelsize=14)
     ax1.legend(loc='upper left', fontsize=14) 
     plt.tight_layout()
-    plt.savefig('plots/Visibility_function.png',bbox_inches='tight', pad_inches=0.1,dpi=300)
+    plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/',bbox_inches='tight', pad_inches=0.1,dpi=300)
     plt.show()
 
 
@@ -43,7 +43,7 @@ if "__main__":
     rmsmins=[]
     full_areas=[]
     for name in names:
-        fits_image= '/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'+name+'_full_rms_map.fits'
+        fits_image= '/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'+name+'_cut_rms_map.fits'
         areas,full_area,rmsmin=get_area(fits_image)
         Areas.append(areas)
         rmsmins.append(rmsmin)
