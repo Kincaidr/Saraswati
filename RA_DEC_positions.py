@@ -13,8 +13,8 @@ def position(RA_array,DEC_array,RA_full_array,DEC_full_array):
     plt.figure(figsize=(8, 6)) 
     plt.scatter(RA_array[0],DEC_array[0],color='blue',s=4,alpha=0.5, label='A2631')
     plt.scatter(RA_array[1],DEC_array[1],color='red',s=4,alpha=0.5,label='ZwCL2341')
-    # plt.scatter(RA_full_array[0],DEC_full_array[0],color='blue',s=4,alpha=0.2)
-    # plt.scatter(RA_full_array[1],DEC_full_array[1],color='red',s=4,alpha=0.2)
+    plt.scatter(RA_full_array[0],DEC_full_array[0],color='blue',s=4,alpha=0.2)
+    plt.scatter(RA_full_array[1],DEC_full_array[1],color='red',s=4,alpha=0.2)
     plt.plot(cluster_centre1.ra, cluster_centre1.dec, marker='+', color='yellow', markersize=30,markeredgewidth=2)
     plt.plot(cluster_centre2.ra, cluster_centre2.dec, marker='+', color='yellow', markersize=30,markeredgewidth=2)
     plt.xlabel('RA [deg]',size=20)
@@ -26,9 +26,7 @@ def position(RA_array,DEC_array,RA_full_array,DEC_full_array):
     plt.tick_params(axis='both', which='major', labelsize=13, length=3, width=1)  # Increase size of major tick labels
     plt.tick_params(axis='both', which='minor', labelsize=13, length=3, width=1)
     plt.legend(fontsize=13)
-    
-
-    plt.savefig('plots/RA_DEC_positions.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
+    plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/RA_DEC_positions.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
     plt.show()
 
 
@@ -41,8 +39,8 @@ if "__main__":
     DEC_full_array=[]
     for name in names:
         path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'
-        masked_cat=Table.read('/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_full_srl.fits')
-        full_cat=Table.read('/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_full_srl.fits')
+        masked_cat=Table.read('/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_cut_srl.fits')
+        full_cat=Table.read('/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_srl.fits')
         RA_array.append(masked_cat['RA'])
         DEC_array.append(masked_cat['DEC'])
         RA_full_array.append(full_cat['RA'])

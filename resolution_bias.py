@@ -128,9 +128,9 @@ if "__main__":
     theta_med_array=[]
     m_array=[]
     fluxes_array=[]
-    alpha_beta_array=[[1.05,1.35],[1.045,1.75]]
-    sigma_high_array=[0.05,0.05]
-    min_flux_array=[8,10]
+    alpha_beta_array=[[1.1,1.35],[1.1,1.7]]
+    sigma_high_array=[0.04,0.04]
+    min_flux_array=[1,1]
     max_flux_array=[100,100]
     for i,name in enumerate(names):
         cat=Table.read('/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_srl_flux_corr.fits')

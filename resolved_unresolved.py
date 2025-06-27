@@ -88,7 +88,7 @@ def plot_curve(catalog,rms, results, method, output_plot):
     plt.plot(t,curve_theory_inverse,linewidth=2,color='black')
     plt.axhline(y=1,color='r',linestyle='--')
     plt.scatter(x[unresolved_mask],y[unresolved_mask],alpha=0.5,s=12,color='green')
-    plt.scatter(x[resolved_mask],y[resolved_mask],alpha=0.5,s=12,color='blue')
+    plt.scatter(x[resolved_mask],y[resolved_mask],alpha=0.5,s=12,color='red')
     plt.xlabel(r'$S_P/\sigma$',fontsize=20)
     plt.ylabel(r'$S_T/ S_P$',fontsize=20)
     plt.tick_params(axis='both', which='major', labelsize=18, length=5, width=1)  # Increase size of major tick labels
@@ -103,11 +103,10 @@ def plot_curve(catalog,rms, results, method, output_plot):
     plt.legend()
     output_name=name+'_resolved_unresolved.png'
     plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/'+output_name)
-    print(output_plot+output_name + ' saved')
+    print(output_plot+output_name + ' xdg-osaved')
 
 
 def flux_correction(catalog,rms, results, output_cat):
-
     cat= Table.read(catalog)
     x0=results[0]
     x1=results[1] 
@@ -129,19 +128,16 @@ def read_config(config_path):
         return json.load(f)
 
 if __name__ == "__main__":
-
-    name='Zwcl2341'
+    name='A2631'
     catalogs="/home/kincaid/Desktop/Saraswati_codes/"+name+"/catalogs/"
     plots="/home/kincaid/Desktop/Saraswati_codes/"+name+"/plots/"
-    rms = 15e-6
+    rms = 10e-6
     method='Powell'#Powell','CG','BFGS','L-BFGS-B','TNC','COBYLA', 'Nelder-Mead'] 
-    #initial_cond=[3.2,-0.9]
-    #initial_cond=[1.09,2.7]  #99%
-    #initial_cond=[1.05,1.35]  #95% A2631
-    initial_cond=[1,1.7] #95% zwcl
+    initial_cond=[1.1,1.35]  #95% A2631
+    #initial_cond=[1.1,1.7] #95% zwcl
     output_cat=catalogs
     output_plot=plots
-    real_catalog=catalogs+name+"_full_srl.fits"
+    real_catalog=catalogs+name+"_cut_srl.fits"
     catalogs=[real_catalog]
     for catalog in catalogs:
         results = optimization(catalog,rms,initial_cond, method)

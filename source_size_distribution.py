@@ -68,9 +68,9 @@ def plot(cat, bmaj, bmin, sigma_low, sigma_high):
     fig, ax1 = plt.subplots(figsize=(8, 8))
     plt.scatter(flux, size, s=10, alpha=0.3,color=color)
     plt.scatter(bin_centers, median_sizes, label='Median size', marker='*',color=color_median)
-    plt.plot(S,theta_max(S,sigma_low, bmaj, bmin),label="Maximum size", color="green",linestyle="--")
-    plt.plot(S,theta_min(S,sigma_low, bmaj, bmin,alpha_beta_array),label="", color="orange",linestyle="--")
-    plt.plot(S,theta_max(S,sigma_high, bmaj, bmin),label="", color="green",linestyle="--")
+    #plt.plot(S,theta_max(S,sigma_low, bmaj, bmin),label="Maximum size", color="green",linestyle="--")
+    #plt.plot(S,theta_min(S,sigma_low, bmaj, bmin,alpha_beta_array),label="", color="orange",linestyle="--")
+    plt.plot(S,theta_max(S,sigma_high, bmaj, bmin),label="Maximum size", color="green",linestyle="--")
     plt.plot(S,theta_min(S,sigma_high, bmaj, bmin,alpha_beta_array),label="Minimum size", color="orange",linestyle="--")
     plt.plot(S, median_size(S, *popt), label="Windhorst fitted Curve", color="purple")
     plt.xscale('log')
@@ -81,7 +81,7 @@ def plot(cat, bmaj, bmin, sigma_low, sigma_high):
     ax1.tick_params(which='minor', length=3)
     #plt.title("Disitrubtion of real soure sizes with fitted median size model")
     plt.legend(fontsize=16)
-    plt.savefig('plots/'+name+'_size_distribution.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
+    plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/'+name+'_size_distribution.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
     plt.show()
 
 if "__main__":
@@ -91,9 +91,9 @@ if "__main__":
     bmaj=8.7159409207893
     bmin=7.209874015964243
     sigma_low=0.03
-    sigma_high=0.3
-    #alpha_beta_array=[1.05,1.045] #A2631
-    alpha_beta_array=[1,1.7] #Zwcl2341
+    sigma_high=0.04
+    alpha_beta_array=[1.1,1.35]  #A2631
+    #alpha_beta_array=[1.1,1.7] #Zwcl2341
     color='blue'
     color_median='cyan'
     threshold=5

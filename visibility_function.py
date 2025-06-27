@@ -24,7 +24,6 @@ def plot(areas,full_areas, rmsmin):
     ax1.set_ylabel('Area (deg²)', size=20)
     ax1.tick_params(axis='both', which='major', direction='in', length=8, width=1.5, labelsize=14)
     ax1.tick_params(axis='both', which='minor', direction='in', length=4, width=1, labelsize=14)
-
     ax1.set_xlim(0,0.1)
     ax2 = ax1.twinx()
     ax2.set_ylim((ax1.get_ylim()[0] /full_areas[0])*100, ax1.get_ylim()[1]/full_areas[0] * 100)

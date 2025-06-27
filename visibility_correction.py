@@ -16,7 +16,7 @@ def visib_plot(real_cat, fits_image,name):
     mask=np.isnan(image_data)
     image_data=image_data[~mask]
     header = fits.getheader(fits_image)
-    flux_min=0.03
+    flux_min=0.01
     flux_max=10
     irange = 10**np.linspace(start=np.log10(flux_min), stop=np.log10(flux_max), num=nbins+1)
     centres = (irange[0:-1] + irange[1:]) / 2.0
@@ -27,8 +27,8 @@ def visib_plot(real_cat, fits_image,name):
     rms_lim_array=[]
 
     for i in range(len(irange)-1):
-        #rmslim = np.sqrt(irange[i]*irange[i+1])/(detect_thresh)
-        rmslim = np.sqrt(irange[i]*irange[i+1])
+        rmslim = np.sqrt(irange[i]*irange[i+1])/(5)
+        #rmslim = np.sqrt(irange[i]*irange[i+1])
         pixels = np.sum(image_data < rmslim)
         rms_lim_array.append(rmslim)
     
@@ -83,7 +83,7 @@ def get_data(visibility_correction_file,  completeness):
     f=interp1d(visib_bin, visib_scale, bounds_error=False, fill_value="extrapolate")
     visib_new=f(comp_bin)
     comp_err=comp_err
-    comp_corr=comp*visib_new
+    comp_corr=comp#*visib_new
     f=interp1d(comp_bin, comp_corr, bounds_error=False, fill_value="extrapolate")
     comp_corr_new=f(comp_bin)
     
@@ -93,10 +93,10 @@ def get_data(visibility_correction_file,  completeness):
 
 if "__name__":
     inj_sources=500
-    no_simulations=10
+    no_simulations=20
     nbins=30
-    name='Zwcl2341'
-    false_sources=205
+    name='A2631'
+    false_sources=106 #205
     fits_image = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'+name+'_cut_rms_map.fits'   
     real_cat = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_cut_srl.fits'
     completeness_filename = name+'/'+"recovered_counts_table_cut.txt"

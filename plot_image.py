@@ -28,8 +28,6 @@ def draw_ds9_lines(ax, regfile, color='black', linewidth=2):
             except ValueError:
                 print(f"Skipping invalid line: {line}")
 
-sdss
-
 def scale_bar(z,pix_scale):
     D_A = cosmo.angular_diameter_distance(z).value
     scale_2Mpc_arcsec = (2 / D_A) * (180 / 3.141592) * 3600 
@@ -70,10 +68,10 @@ def image_analyse(fits_image):
 #     plt.savefig(plots+outname+'_full_image.png')
 #     plt.show()
     
-def plot(fits_image1, name):
+def plot(fits_image1, fits_image2, name):
     # Load image data
     image_data1, vmin1, vmax1, wcs = image_analyse(fits_image1)
-    image_data2, vmin2, vmax2, _= image_analyse(fits_image1)
+    image_data2, vmin2, vmax2, _= image_analyse(fits_image2)
     scale=scale_bar(z,pix_scale)
     radius_arcsec = 0.8*3600
     radius_pix=  radius_arcsec/pix_scale# radius in degrees for the circle
@@ -94,13 +92,11 @@ def plot(fits_image1, name):
     axes[1].set_ylabel('Dec (J2000)', size=16)
     #axes[1].set_xlim(1200, 4800)   
     #axes[1].set_ylim(1200, 4800)
-    axes[1].set_xlim(1500, 4500)
-    axes[1].set_ylim(1500, 4500)
-    axes[1].plot([xpos + 200, xpos + 200 + scale], [ypos + 200, ypos + 200], color='yellow', lw=3)
-    axes[1].text(xpos + 200 + scale / 2, ypos + 230, '2 Mpc', color='white', fontsize=12, ha='center')
-    #draw_ds9_lines(axes[1], regfile, color='white', linewidth=0.2)
-# # Add the label centered above the scale bar
-#   
+    axes[1].set_xlim(1200, 4800)
+    axes[1].set_ylim(1100, 4900)
+    axes[1].plot([xpos + 50, xpos + 50 + scale], [ypos + 50, ypos + 50], color='black', lw=4)
+    axes[1].text(xpos + 50 + scale / 2, ypos + 120, '2 Mpc', color='black', fontsize=14, ha='center')
+
 #     # Set axis limits
     for ax in axes:
         ax.tick_params(axis='both', which='major', labelsize=13, length=5, width=1)
@@ -121,16 +117,15 @@ def plot(fits_image1, name):
     colorbar.set_label(r'($\mu$Jy/Beam)', fontsize=16, color='black')
     plt.tight_layout(rect=[0, 0, 0.9, 1])  # Adjust layout to fit colorbar
     plt.subplots_adjust(left=0.1, right=0.85, top=0.90, bottom=0.05) 
-    plt.savefig('plots/'+name+'_image.png', bbox_inches='tight', pad_inches=0.1, dpi=300)
+    plt.savefig(plots+name+'_image.png', bbox_inches='tight', pad_inches=0.1, dpi=300)
     plt.show()
 
 if "__main__":
     z=0.27
     pix_scale=1.5
-    name='Zwcl2341'
+    name='A2631'
     path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'
-    plots='/home/kincaid/Desktop/Saraswati_codes/'+name+'/plots/'   
-    # fits_image1 = path+ 'image_DI_Clustered.DeeperDeconv.AP.int.restored.fits'
-    fits_image =path+'image_DI_Clustered.DeeperDeconv.AP.int.restored.fits'
-    #fits_image =path+ 'image_DI_Clustered.DeeperDeconv.AP4.int.restored.fits'
-    plot(fits_image, name)
+    plots='/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/'
+    fits_image1 = path+ 'image_DI_Clustered.DeeperDeconv.AP4.int.restored.fits'
+    fits_image2 =path+ 'image_DI_Clustered.DeeperDeconv.AP4.int.restored.pbcor.fits'
+    plot(fits_image1, fits_image2, name)
