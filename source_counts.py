@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 from Massardi_2010_plot import Massardi_counts
 from Mancuso_2017_counts import Mancuso_counts
-from SEMPER_SFG_counts import SEMPER_SFG_counts
 from SEMPER import SEMPER_SFG_AGN_counts
 from TRECS_source_counts import TRECS_counts
 
@@ -49,10 +48,10 @@ def resolution_bias_correction(resolution_bias_filename,centres):
 
 def completeness_correction(output_filename, centres):
     data = np.loadtxt(output_filename)
-    ratio=data[:,2]
-    flux_extrap=data[:,0]*1e-3
+    flux_extrap=data[:,0]
+    ratio=data[:,1]
     f=interp1d(flux_extrap, ratio, bounds_error=False, fill_value="extrapolate")
-    correction_factor=f(centres)
+    correction_factor=f(centres*1e3)
     #correction_factor=np.append(correction_factor,np.ones(len(centres) - len(correction_factor)))
     corr=1/correction_factor
     corr=np.abs(corr)
@@ -67,8 +66,9 @@ def get_counts(real_cat, nbins):
     rec_cat = Table.read(real_cat)
     #mask=(rec_cat['S_Code'] =='S') #| (rec_cat['S_Code'] =='C') #| (rec_cat['S_Code'] =='M')
     flux=rec_cat['Total_flux']
+    breakpoint()
     flux=flux*(counts_freq/data_freq)**Spectral_Index
-    Range_x = 10**np.linspace(start=np.log10(flux.min()), stop=np.log10(0.1), num=nbins+1)
+    Range_x = 10**np.linspace(start=np.log10(flux.min()), stop=np.log10(0.2), num=nbins+1)
     #Range_x = np.percentile(flux, np.linspace(0, 80, nbins + 1))
     centres = (Range_x[0:-1] + Range_x[1:]) / 2.0
     difflr=np.diff(Range_x)
@@ -119,18 +119,18 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     axs[1].grid(True, which="both", ls="--", alpha=0.5)
     axs[0].errorbar(centres[0]*1e3, counts_norm[0], yerr=counts_err[0], 
                     color='#ADD8E6', fmt='o', markersize=4, alpha=1,
-                    label='uncorrected A2631 (This paper)')
+                    label='MOSS2 A2631 uncorrected (This paper)')
 
     axs[0].errorbar(centres[0]*1e3, counts_norm[0]*completeness_corr[0], 
                     yerr=counts_err[0], xerr=deltaS[0],
                     color='blue', fmt='+', markersize=10, alpha=1,
                     label='MOSS2 A2631 corrected (This paper)')
-    axs[0].plot(S_M,M_counts,label='Mancuso 2017  AGN+SFG model (Mancuso +2017)',color="#885006EB")
+    axs[0].plot(S_M,M_counts,label='Mancuso 2017 AGN+SFG model (Mancuso +2017)',color="#F700CD")
     axs[0].plot(Semper_M,Semper_counts,label='SEMPER AGN+SFG model (Giulietti +2025)',color='green')
     axs[0].plot(TRECS_M,TRECS_count,label='T-RECS AGN+SFG model (Bonaldi +2023)',color='orange')
     axs[0].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz Bondi fitted (Bondi +2008)')
-    axs[0].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='purple',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.3)
-    axs[0].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz  (Mauch +2019)',alpha=0.9,markersize=8)
+    axs[0].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
+    axs[0].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.9,markersize=8)
     axs[0].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=1,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
     axs[0].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=1,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
     axs[0].set_xscale('log')
@@ -141,6 +141,7 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     axs[0].set_ylabel(r'$S^{2.5}dN/dS$ [sr$^{-1}$ Jy$^{1.5}$]', fontsize=16)
     axs[0].legend()
     axs[0].axvline(5*16e-3,linestyle='--',color='blue',alpha=1)
+    axs[0].legend(loc='lower right')
     axs[0].set_title('A2631', fontsize=18)
     axs[0].tick_params(axis='both', which='major', labelsize=12)
     axs[0].tick_params(axis='both', which='minor', labelsize=12)
@@ -148,18 +149,17 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     # ---- Plot 2: Zwcl2341 ----
     axs[1].errorbar(centres[1]*1e3, counts_norm[1], yerr=counts_err[1], 
                     color='#DA6969', fmt='o', markersize=4, alpha=1,
-                    label='uncorrected Zwcl2341')
-
+                    label='MOSS2 Zwcl2341 uncorrected (This paper)')
     axs[1].errorbar(centres[1]*1e3, counts_norm[1]*completeness_corr[1], 
                     yerr=counts_err[1], xerr=deltaS[1],
                     color='red', fmt='+', markersize=10, alpha=1,
                     label='MOSS2 Zwcl2341 corrected (This paper)')
-    axs[1].plot(S_M,M_counts,label='Mancuso 2017 AGN +SFG model (Mancuso +2017)',color="#885006EB")
+    axs[1].plot(S_M,M_counts,label='Mancuso 2017 AGN+SFG model (Mancuso +2017)',color="#F700CD")
     axs[1].plot(Semper_M,Semper_counts,label='SEMPER SFG model (SEMPER +2025)',color='green',alpha=0.7)
     axs[1].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz (Bondi +2008)',alpha=0.7)
     axs[1].plot(TRECS_M,TRECS_count,label='T-RECS SFG model (TRECS +2023)',color='orange')
-    axs[1].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='purple',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.3)
-    axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz  (Mauch +2019)',alpha=0.9,markersize=8)
+    axs[1].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
+    axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.9,markersize=8)
     axs[1].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=1,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
     axs[1].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=1,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
     axs[1].set_xscale('log')
@@ -169,7 +169,7 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     axs[1].set_xlabel(r'$S_{1.4 GHz}$ [mJy]', fontsize=16)
     axs[1].set_ylabel(r'$S^{2.5}dN/dS$ [sr$^{-1}$ Jy$^{1.5}$]', fontsize=16)
     axs[1].axvline(5*10e-3,linestyle='--',color='red',alpha=1)
-    axs[1].legend()
+    axs[1].legend(loc='lower right')
     axs[1].set_title('Zwcl2341', fontsize=18)
     axs[1].tick_params(axis='both', which='major', labelsize=12)
     axs[1].tick_params(axis='both', which='minor', labelsize=12)
@@ -229,7 +229,7 @@ if __name__ == "__main__":
     MeerKAT_COSMOS_lit='MeerKAT_COSMOS.txt'
     MeerKAT_XMM_LSS_lit='MeerKAT_XMM_LSS.txt'
     survey_area=1.65# (0.7*0.73*np.pi) in square degrees
-    nbins=23
+    nbins=25
     counts_freq=1.4
     data_freq=1.28  
     Spectral_Index=-0.7
