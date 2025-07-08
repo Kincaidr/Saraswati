@@ -3,8 +3,8 @@ from astropy.table import Table
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d
 from Massardi_2010_plot import Massardi_counts
-from Mancuso_2017_counts import Mancuso_counts
-from SEMPER import SEMPER_SFG_AGN_counts
+from Mancuso_source_counts import Mancuso_counts
+from SEMPER_source_counts import SEMPER_SFG_AGN_counts
 from TRECS_source_counts import TRECS_counts
 
 def scale_flux(flux):
@@ -113,10 +113,34 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     Semper_M,Semper_counts=  SEMPER_SFG_AGN_counts()
     TRECS_M,TRECS_count=  TRECS_counts()
     S=np.logspace(-2,3,1000) 
-
     fig, axs = plt.subplots(2, 1, figsize=(9, 12), sharex=True)
+
+    # fig, axs = plt.subplots(2, 1, figsize=(8, 12), sharey=True)
+
+    # for i, name in enumerate(names):
+    #     axs[i].set_xscale('log')
+    #     axs[i].set_yscale('log')
+    #     axs[i].set_ylim(1e-3, 1e4)
+    #     axs[i].set_xlim(1e-2, 10**2.5)
+    #     axs[i].set_xlabel(r'$S_{1.4 GHz}$ [mJy]', fontsize=16)
+    #     axs[i].set_ylabel(r'$S^{2.5}dN/dS$ [sr$^{-1}$ Jy$^{1.5}$]', fontsize=16)
+    #     axs[i].legend()
+    #     axs[i].axvline(5*16e-3,linestyle='--',color='blue',alpha=1)
+    #     axs[i].legend(loc='lower right')
+    #     axs[i].tick_params(axis='both', which='major', labelsize=12)
+    #     axs[i].tick_params(axis='both', which='minor', labelsize=12)
+    #     axs[i].grid(True, which="both", ls="--", alpha=0.5)
+    #     axs[i].grid(True, which="both", ls="--", alpha=0.5)
+    #     axs[i].errorbar(centres[0]*1e3, counts_norm[0], yerr=counts_err[0], 
+    #                 color='#ADD8E6', fmt='o', markersize=4, alpha=1,
+    #                 label='MOSS2 A2631 uncorrected (This paper)')
+    #     axs[i].errorbar(centres[0]*1e3, counts_norm[0]*completeness_corr[0], 
+    #                 yerr=counts_err[0], xerr=deltaS[0],
+    #                 color='blue', fmt='+', markersize=10, alpha=1,
+    #                 label='MOSS2 A2631 corrected (This paper)')
+
     axs[0].grid(True, which="both", ls="--", alpha=0.5)
-    axs[1].grid(True, which="both", ls="--", alpha=0.5)
+    axs[0].grid(True, which="both", ls="--", alpha=0.5)
     axs[0].errorbar(centres[0]*1e3, counts_norm[0], yerr=counts_err[0], 
                     color='#ADD8E6', fmt='o', markersize=4, alpha=1,
                     label='MOSS2 A2631 uncorrected (This paper)')
@@ -125,9 +149,9 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
                     yerr=counts_err[0], xerr=deltaS[0],
                     color='blue', fmt='+', markersize=10, alpha=1,
                     label='MOSS2 A2631 corrected (This paper)')
-    axs[0].plot(S_M,M_counts,label='Mancuso 2017 AGN+SFG model (Mancuso +2017)',color="#F700CD")
-    axs[0].plot(Semper_M,Semper_counts,label='SEMPER AGN+SFG model (Giulietti +2025)',color='green')
-    axs[0].plot(TRECS_M,TRECS_count,label='T-RECS AGN+SFG model (Bonaldi +2023)',color='orange')
+    axs[0].plot(S_M,M_counts,label='Mancuso 2017 model (Mancuso +2017)',color="#F700CD")
+    axs[0].plot(Semper_M,Semper_counts,label='SEMPER 1.4GHz model (Giulietti +2025)',color='green')
+    axs[0].plot(TRECS_M,TRECS_count,label='T-RECS model (Bonaldi +2023)',color='orange')
     axs[0].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz Bondi fitted (Bondi +2008)')
     axs[0].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
     axs[0].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.9,markersize=8)
@@ -154,10 +178,10 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
                     yerr=counts_err[1], xerr=deltaS[1],
                     color='red', fmt='+', markersize=10, alpha=1,
                     label='MOSS2 Zwcl2341 corrected (This paper)')
-    axs[1].plot(S_M,M_counts,label='Mancuso 2017 AGN+SFG model (Mancuso +2017)',color="#F700CD")
-    axs[1].plot(Semper_M,Semper_counts,label='SEMPER SFG model (SEMPER +2025)',color='green',alpha=0.7)
+    axs[1].plot(S_M,M_counts,label='Mancuso model (Mancuso +2017)',color="#F700CD")
+    axs[1].plot(Semper_M,Semper_counts,label='SEMPER model (SEMPER +2025)',color='green',alpha=0.7)
     axs[1].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz (Bondi +2008)',alpha=0.7)
-    axs[1].plot(TRECS_M,TRECS_count,label='T-RECS SFG model (TRECS +2023)',color='orange')
+    axs[1].plot(TRECS_M,TRECS_count,label='T-RECS model (TRECS +2023)',color='orange')
     axs[1].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
     axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.9,markersize=8)
     axs[1].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=1,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
