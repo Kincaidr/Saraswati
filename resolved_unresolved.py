@@ -118,7 +118,6 @@ def plot_curve(catalog, rms, results, method, ax, color, label):
     ax.legend(fontsize=10)
 
 
-
 def flux_correction(catalog,rms, results, output_cat):
     cat= Table.read(catalog)
     x0=results[0]
