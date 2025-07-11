@@ -23,12 +23,8 @@ def false_Detections(catalog):
     num=len(cat)
     return(num)
 
-sdsdsdsdsdsd
 def delete_simulation_contents(cluster_name):
-    # Path to the Bash script
     bash_script_path = "./delete_contents.sh"
-    
-    # Run the Bash script with cluster_name as argument
     result = subprocess.run(
         [bash_script_path, cluster_name],
         text=True,          # Captures output as string
@@ -79,7 +75,6 @@ def place_sources(num_sources, xx, yy, min_distance, pix_size):
     return sources
 
 
-
 def place_sources_circ(num_sources, radius, min_distance, pix_size, centre_x, centre_y):
     sources = []
     attempts = 0
@@ -100,11 +95,14 @@ def place_sources_circ(num_sources, radius, min_distance, pix_size, centre_x, ce
     return sources
 
 
-def place_sources_box(num_sources, width,height, min_distance, pix_size, centre_x, centre_y):
+def place_sources_box(num_sources, size, min_distance, pix_size, centre_x, centre_y):
     sources = []
     attempts = 0
     max_attempts = num_sources * 10  # Limit attempts to avoid infinite loop
-    
+    size=size*60
+    width= int(size / pix_size)  # Convert width from arcsec to pixels
+    height= int(size / pix_size)  # Convert height from arcsec to pixels
+
     half_width = width // 2
     half_height = height // 2
 
@@ -159,7 +157,8 @@ def image_properties(fits_image):
     BPA=data_header['BPA']
     centre_x=data_header['CRVAL1']
     centre_y=data_header['CRVAL2']
-    new_data = data_data[:,:]
+    new_data = data_data.squeeze()
+    new_data=new_data.T
     w = WCS(fits_image, relax=True)
     return(new_data,data_header,w, BMAJ,BMIN,BPA, centre_x, centre_y)
 
@@ -294,7 +293,7 @@ def injected_catalogs(min_size,max_size,fluxes,sim_images_path, number_sources, 
     sim_image_test=sim_images_path+'simulated_image_test_'+output+'.fits'
     sim_image_real=sim_images_path+'simulated_image_real_'+output+'.fits'
     fits.writeto(sim_image_real,data=final_image+real_noise,header=header,overwrite=True)
-    #fits.writeto(sim_image_test,data=final_image+uniform_noise,header=header,overwrite=True)
+    fits.writeto(sim_image_test,data=final_image+uniform_noise,header=header,overwrite=True)
     print(sim_image_test+ ' ' +'written')
     print(sim_image_real+ ' ' +'written')
     col1 = fits.Column(name='Total_flux_inj', format='D',array=Flux_total)
@@ -314,7 +313,6 @@ def injected_catalogs(min_size,max_size,fluxes,sim_images_path, number_sources, 
     return inj_cat_real, sim_image_real
 
 def recovered_catalogs(sim_image, output):
-
     output_name=output
     output_path=sim_catalogs_path
     outfile=catalog_generation(sim_image, output_path, output_name, res_image=False)
@@ -345,11 +343,9 @@ def update_table_v2(filename, count, centre, sim_no, nbins):
         file.write("\t".join(bin_centres) + "\n")  # First row: bin centres
         for row in counts_existing:
             file.write("\t".join(row) + "\n")  # Other rows for simulations
-
     print(f"Updated {filename} with Bin {centre:.5f}, Count {count}, Simulation {sim_no}.")
 
 def ratio(rec_cat, centre, sim_no, nbins, false_detections, rec_counts_file):
-
     recovered_cat = Table.read(rec_cat)
     rec_count = len(recovered_cat['Total_flux'])-false_detections
     update_table_v2( rec_counts_file, rec_count, centre, sim_no, nbins)
@@ -361,9 +357,7 @@ def simulation(min_size,max_size,sim_images_path, number_sources, Range_x,data, 
         print(f"Removed {rec_counts_file}")
     else:
         print(f"{rec_counts_file} does not exist.")
-
     for sim_no in range(no_of_simulations):
-        #source_placement=place_sources_circ(number_sources, radius=radius, min_distance=20, pix_size=pix_size, centre_x=centre_x,centre_y=centre_y)
         source_placement=place_sources(number_sources, xx, yy, min_distance=20, pix_size=pix_size)
         print("Simulation_number is", sim_no)
         for bin_no in range(len(Range_x)-1):
@@ -382,26 +376,27 @@ if __name__ == "__main__":
     min_size = 1  # Minimum source size in simulation (arcsec)
     max_size = 30 # Maximum source size in simulation (arcsec)
     number_sources=500 # total number of sources simulated on each image
-    no_of_simulations=10 # total number of simulations
+    no_of_simulations=1 # total number of simulations
     flux_min=0.03#minimum flux of sources in simualtion (mJy)
     flux_max=10 #maximum flux of sources in simualtion (mJy)
     nbins=30 #Number of bins you want to find the detected fraction
-    residual_image = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'+name+'_res_map.fits'
-    residual_cat = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_res_srl.fits' #residual image for which we place sources on
+    residual_image = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/'+name+'_cut_res_map.fits'
+    residual_cat = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_cut_srl.fits' #residual image for which we place sources on
     sim_images_path = '/media/kincaid/LaCie/images/' #all simulated images go here
     sim_catalogs_path = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/simulation/sim_catalogs/' #all simulated catalogs go here
     Range_x = 10**np.linspace(start=np.log10(flux_min), stop=np.log10(flux_max), num=nbins+1)
-    padding=2500
+    padding=1000
     data,header,w, BMAJ,BMIN,BPA, RA_centre, DEC_centre=image_properties(residual_image) #extract fits data, header 
     original_image = np.zeros((header['NAXIS1'], header['NAXIS2']))
     padded_image= np.zeros((original_image.shape[0]+padding, original_image.shape[1]+padding))
     noise=1e-9
+    #radius=1680
     mean,stddev=0,noise
     uniform_noise = np.random.normal(mean, stddev, original_image.shape)
     pix_size=header['CDELT2']*3600
     BMAJ=BMAJ*3600
     BMIN=BMIN*3600
-    rec_counts_file = name+"_recovered_counts_table_full.txt"
+    rec_counts_file = name+"_recovered_counts_table_cut.txt"
     #This section is for circular cutout image, need to uncomment sources_placement_circle in simualtion function to use
     paddiv2=int(padding/2)
     xx=(paddiv2,paddiv2+original_image.shape[0])
@@ -412,7 +407,7 @@ if __name__ == "__main__":
     ##########################################################
 
     #res_cat=catalog_generation(residual_image, sim_catalogs_path, outname=name+'_res', res_image=False) #Run source finder on residual image to find false detections
-    false_detections=179#false_Detections(res_cat) #the number of false detections, can also specify manually
+    false_detections=0#106 205q#false_Detections(res_cat) #the number of false detections, can also specify manually
     #print("False detections are", false_detections) #   specifiy correct false detections here before simulation
     simulation(min_size,max_size,sim_images_path, number_sources, Range_x, data, rec_counts_file)
 

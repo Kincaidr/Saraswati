@@ -48,13 +48,14 @@ def compute_eddington_bias(catalog):
     S_true=(flux/2)*(1+np.sqrt(1-(4*gamma_from_SCs_SEMPER(flux, coef)/(SNR**2))))
     #S_true=(flux/2)*(1+np.sqrt(1-(4*gamma_from_SCs_Bondi(flux)/(SNR**2))))
     plt.hist(np.log10(cat['Total_flux']), bins=100, alpha=0.7, label='Total Flux before',color='blue')
-    plt.hist(np.log10(S_true), bins=100, alpha=0.7, label='Total Flux after',color='red')
-    plt.legend()
-    plt.show()
     cat['Total_flux'][mask] = S_true
     outname=f'{path}{name}/catalogs/{name}_eddington_corr_srl.fits'
     cat.write(outname, overwrite=True)
     print(f"Eddington bias corrected catalog written to {outname}")
+    cat=Table.read(outname)
+    plt.hist(np.log10(cat['Total_flux']), bins=100, alpha=0.7, label='Total Flux after',color='red')
+    plt.legend()
+    plt.show()
 
 if __name__ == "__main__":
     path='/home/kincaid/Desktop/Saraswati_codes/'

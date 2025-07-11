@@ -270,7 +270,7 @@ if __name__ == "__main__":
         resolution_bias_file=name+'_resolution_bias_correction.txt'
         completeness_file = name+'/'+"visib_correction_cut.txt"
         false_detection_file='false_detection_correction.txt'
-        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_srl_flux_corr.fits'  
+        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_eddington_corr_srl.fits'  
         print( 'Real catalog is',real_catalog )
         centres,counts_norm,counts_err,deltaS, num=get_counts(real_catalog,nbins)
         numbers_array.append(num)

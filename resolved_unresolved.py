@@ -1,9 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
-from astropy.io import fits
 from astropy.table import Table
-import json
+
 
 
 
@@ -64,9 +63,6 @@ def optimization(catalog,rms,initial_cond, method):
     return(results)
 
 def plot_curve(catalog, rms, results, method, ax, color, label):
-    from astropy.table import Table
-    import numpy as np
-
     cat = Table.read(catalog)
     flux_total = cat['Total_flux']
     flux_peak = cat['Peak_flux']
@@ -85,10 +81,8 @@ def plot_curve(catalog, rms, results, method, ax, color, label):
 
     unresolved_mask = (y < curve_real) & (y > curve_real_inverse)
     resolved_mask = ~unresolved_mask
-
     total_unresolved = np.sum(unresolved_mask)
     total_resolved = np.sum(resolved_mask)
-
     cond = (y <= 1) & (y > curve_real_inverse)
     num = np.sum(cond) / np.sum(y <= 1)
 
@@ -116,60 +110,47 @@ def plot_curve(catalog, rms, results, method, ax, color, label):
     ax.tick_params(axis='both', which='major', labelsize=12, length=5, width=1)
     ax.tick_params(axis='both', which='minor', labelsize=12, length=5, width=1)
     ax.legend(fontsize=10)
+    return unresolved_mask
 
+# def flux_correction(catalog,rms, results, output_cat):
+#     cat= Table.read(catalog)
+#     x0=results[0]
+#     x1=results[1] 
+#     flux_total=cat['Total_flux']
+#     flux_peak=cat['Peak_flux']
+#     y=flux_total/flux_peak
+#     x=flux_peak/rms
+#     curve_real=func(x0,x1,x)
+#     curve_real_inverse=1/curve_real
+#     unresolved_mask= (y < curve_real) & (y >curve_real_inverse)
+#     cat['Maj'][unresolved_mask]=0
+#     cat['Min'][unresolved_mask]=0
+#     cat['Total_flux'][unresolved_mask]=cat['Peak_flux'][unresolved_mask]
+#     corrected_cat=name+'_flux_corr_srl.fits'
+#     cat.write(output_cat+corrected_cat,format='fits', overwrite=True)
 
-def flux_correction(catalog,rms, results, output_cat):
+def flux_correction(catalog,unresolved_mask,output_cat):
     cat= Table.read(catalog)
-    x0=results[0]
-    x1=results[1] 
-    flux_total=cat['Total_flux']
-    flux_peak=cat['Peak_flux']
-    y=flux_total/flux_peak
-    x=flux_peak/rms
-    curve_real=func(x0,x1,x)
-    curve_real_inverse=1/curve_real
-    unresolved_mask= (y < curve_real) & (y >curve_real_inverse)
     cat['Maj'][unresolved_mask]=0
     cat['Min'][unresolved_mask]=0
     cat['Total_flux'][unresolved_mask]=cat['Peak_flux'][unresolved_mask]
-    corrected_cat=name+'_srl_flux_corr.fits'
+    corrected_cat=name+'_flux_corr_srl.fits'
     cat.write(output_cat+corrected_cat,format='fits', overwrite=True)
-    
-def read_config(config_path):
-    with open(config_path, 'r') as f:
-        return json.load(f)
+    print(f"Flux corrected catalog written to {output_cat+corrected_cat}")
 
 if __name__ == "__main__":
-    # name='A2631'
-    # catalogs="/home/kincaid/Desktop/Saraswati_codes/"+name+"/catalogs/"
-    # plots="/home/kincaid/Desktop/Saraswati_codes/"+name+"/plots/"
-
-    # rms = 16e-6
-    # color='blue'
-    # method='Powell'#Powell','CG','BFGS','L-BFGS-B','TNC','COBYLA', 'Nelder-Mead'] 
-    # initial_cond=[1.03,1.4]  #95% A2631
-    # #initial_cond=[1.01,1.7] #95% zwcl
-    # output_cat=catalogs
-    # output_plot=plots
-    # real_catalog=catalogs+name+"_cut_srl.fits"
-    # catalogs=[real_catalog]
-    # for catalog in catalogs:
-    #     results = optimization(catalog,rms,initial_cond, method)
-    #     plot_curve(catalog,rms, results, method, output_plot)
-    #     flux_correction(catalog,rms, results, output_cat)
     names = ['A2631', 'Zwcl2341']
     colors = ['blue', 'red']
     initial_conds = [[1.03, 1.4], [1.01, 1.7]]
     rms_values = [16e-6, 11e-6]  # Adjust if needed
-
     fig, axs = plt.subplots(2, 1, figsize=(8, 12), sharey=True)
 
     for i, name in enumerate(names):
         catalogs_path = f"/home/kincaid/Desktop/Saraswati_codes/{name}/catalogs/"
         catalog = catalogs_path + name + "_cut_srl.fits"
         results = optimization(catalog, rms_values[i], initial_conds[i], method='Powell')
-        plot_curve(catalog, rms_values[i], results, method='Powell', ax=axs[i], color=colors[i], label=names[i])
-        flux_correction(catalog, rms_values[i], results, catalogs_path)
+        unresolved_mask=plot_curve(catalog, rms_values[i], results, method='Powell', ax=axs[i], color=colors[i], label=names[i])
+        flux_correction(catalog, unresolved_mask, catalogs_path)
 
     plt.tight_layout(rect=[0, 0, 1, 0.95])
     plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/resolved_unresolved.png', dpi=300)
