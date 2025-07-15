@@ -3,8 +3,8 @@ from astropy.table import Table
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
-def func(a,b,S,N,t):
-    f=a+b/(S/(t*N))
+def func(a,b,SN):
+    f=a+b/(SN)
     return(f)
 
 def integral_dist(theta_med,theta_lim,a=-np.log(2),b=0.62):
@@ -15,9 +15,8 @@ def theta_max(S, sigma, bmaj, bmin):
     theta_max=np.sqrt(bmaj*bmin)*np.sqrt((S/(threshold*sigma))-1)
     return(theta_max)
 
-def theta_min(S,sigma, bmaj, bmin,alpha_betas):
-    t=5
-    theta_min=np.sqrt(bmaj*bmin)*np.sqrt(func(alpha_betas[0],alpha_betas[1],S,sigma,t)-1)
+def theta_min(SN, bmaj, bmin,alpha_betas):
+    theta_min=np.sqrt(bmaj*bmin)*np.sqrt(func(alpha_betas[0],alpha_betas[1],SN)-1)
     return(theta_min)
 
 # def theta_min(S,sigma, bmaj, bmin,a=1.04,b=2.6):
@@ -25,9 +24,14 @@ def theta_min(S,sigma, bmaj, bmin,alpha_betas):
 #     return(theta_min)
 
 
-def median_size(S, k, m):
+def median_size2(S, k, m):
     S = np.asarray(S)
-    t = np.where(S < 1, 2 * k, 2 * k * S**m)
+    t = np.where(S < 1, k,  k * S**m)
+    return t
+
+def median_size1(S, k, m):
+    S = np.asarray(S)
+    t = k * S**m
     return t
 
 def equal_source_bins(flux,size,nbins):
@@ -65,7 +69,8 @@ def plot(cat, bmaj, bmin, sigma_high,axs,color,alpha_beta_array):
     #popt, pcov = curve_fit(median_size, bin_centers, median_sizes, p0=[10, 0.1])
     #k_fit, m_fit = popt
     #print(f"Fitted parameters: k = {k_fit}, m = {m_fit}")
-    S=np.logspace(-1.5,2,10000)
+    S=np.logspace(-1.5,2.5,10000)
+    SN=np.linspace(1,5,10000)
     flux=cat['Total_flux']*1e3
     min=cat['Min']*3600
     maj=cat['Maj']*3600
@@ -75,9 +80,9 @@ def plot(cat, bmaj, bmin, sigma_high,axs,color,alpha_beta_array):
     #plt.plot(S,theta_max(S,sigma_low, bmaj, bmin),label="Maximum size", color="green",linestyle="--")
     #plt.plot(S,theta_min(S,sigma_low, bmaj, bmin,alpha_beta_array),label="", color="orange",linestyle="--")
     axs.plot(S,theta_max(S,sigma_high, bmaj, bmin),label="Maximum size", color="green",linestyle="--")
-    axs.plot(S,theta_min(S,sigma_high, bmaj, bmin,alpha_beta_array),label="Minimum size", color="orange",linestyle="--")
-    axs.plot(S, median_size(S, k=4, m=0.3), label=r"$\Theta_{\mathrm{med,1}}$", color="black",linewidth=2)
-    axs.plot(S, median_size(S, k=4, m=0.03), label=r"$\Theta_{\mathrm{med,2}}$", color="purple",linewidth=2)
+    axs.plot(S,theta_min(SN, bmaj, bmin,alpha_beta_array),label="Minimum size", color="orange",linestyle="--")
+    axs.plot(S, median_size1(S, k=8, m=0.3), label=r"$\Theta_{\mathrm{med,1}}$", color="black",linewidth=2)
+    axs.plot(S, median_size2(S, k=8, m=0.03), label=r"$\Theta_{\mathrm{med,2}}$", color="purple",linewidth=2)
     axs.set_xscale('log')
     axs.set_ylim(-2,80)
     axs.set_xlabel(r"$S_T$ [mJy]", size=22)
@@ -91,7 +96,7 @@ if "__main__":
     names=['A2631','Zwcl2341']
     bmaj=8.7159409207893
     bmin=7.209874015964243
-    sigma_high=0.03
+    sigma_high=[0.016, 0.011]
     alpha_beta_array= [[1.03, 1.4], [1.01, 1.7]]
 
     #alpha_beta_array=[1.1,1.7] #Zwcl2341
@@ -101,7 +106,7 @@ if "__main__":
     fig, axs = plt.subplots(1, 2, figsize=(17, 7), sharey=True)
     for i,name in enumerate(names):
         cat=Table.read('/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_flux_corr_srl.fits')
-        plot(cat, bmaj, bmin, sigma_high,axs[i],colors[i],alpha_beta_array[i])
-    plt.legend(fontsize=17)
+        plot(cat, bmaj, bmin, sigma_high[i],axs[i],colors[i],alpha_beta_array[i])
+    plt.legend(fontsize=15)
     plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/size_distribution.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
     plt.show()

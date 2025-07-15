@@ -6,6 +6,7 @@ from Massardi_2010_plot import Massardi_counts
 from Mancuso_source_counts import Mancuso_counts
 from SEMPER_source_counts import SEMPER_SFG_AGN_counts
 from TRECS_source_counts import TRECS_counts
+import pickle
 
 def scale_flux(flux):
  counts_freq=1400
@@ -39,12 +40,11 @@ def norm(source_num,difflr,survey_area,centres):
     return(centres, difflr, source_num, source_norm)
 
 def resolution_bias_correction(resolution_bias_filename,centres):
-    data = np.loadtxt(resolution_bias_filename)
-    ratio=data[:,0]
-    flux_extrap=data[:,1]
-    f=interp1d(flux_extrap, ratio, bounds_error=False, fill_value="extrapolate")
-    correction_factor=f(centres*1e3)
-    return correction_factor    
+    with open(resolution_bias_filename, 'rb') as f:
+        func = pickle.load(f)
+    corr=func(centres*1e3)
+    breakpoint()
+    return corr   
 
 def completeness_correction(output_filename, centres):
     data = np.loadtxt(output_filename)
@@ -57,16 +57,10 @@ def completeness_correction(output_filename, centres):
     corr=np.abs(corr)
     return(corr)    
 
-def false_detection_correction(output_filename):
-    data = np.loadtxt(output_filename)
-    corr=data[:,1]
-    return(corr)    
-
 def get_counts(real_cat, nbins):
     rec_cat = Table.read(real_cat)
     #mask=(rec_cat['S_Code'] =='S') #| (rec_cat['S_Code'] =='C') #| (rec_cat['S_Code'] =='M')
     flux=rec_cat['Total_flux']
-    breakpoint()
     flux=flux*(counts_freq/data_freq)**Spectral_Index
     Range_x = 10**np.linspace(start=np.log10(flux.min()), stop=np.log10(0.2), num=nbins+1)
     #Range_x = np.percentile(flux, np.linspace(0, 80, nbins + 1))
@@ -78,7 +72,7 @@ def get_counts(real_cat, nbins):
     return(centres, counts_norm,counts_err,deltaS, num)
     
 
-def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_literature,source_count_literature_DEEP,source_count_literature_SuperCLASS,completeness_corr,false_detect_corr, resolution_corr):
+def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_literature,source_count_literature_DEEP,source_count_literature_SuperCLASS,completeness_corr, resolution_corr):
     # x_LoTSS=LoTSS_lit[:,0]
     # y_LoTSS=LoTSS_lit[:,1]
     # y_LoTSS_err_up=LoTSS_lit[:,2]
@@ -140,23 +134,23 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     #                 label='MOSS2 A2631 corrected (This paper)')
 
     axs[0].grid(True, which="both", ls="--", alpha=0.5)
-    axs[0].grid(True, which="both", ls="--", alpha=0.5)
+    axs[1].grid(True, which="both", ls="--", alpha=0.5)
     axs[0].errorbar(centres[0]*1e3, counts_norm[0], yerr=counts_err[0], 
                     color='#ADD8E6', fmt='o', markersize=4, alpha=1,
                     label='MOSS2 A2631 uncorrected (This paper)')
 
     axs[0].errorbar(centres[0]*1e3, counts_norm[0]*completeness_corr[0], 
                     yerr=counts_err[0], xerr=deltaS[0],
-                    color='blue', fmt='+', markersize=10, alpha=1,
+                    color='blue', fmt='+', markersize=12, alpha=1,
                     label='MOSS2 A2631 corrected (This paper)')
-    axs[0].plot(S_M,M_counts,label='Mancuso 2017 model (Mancuso +2017)',color="#F700CD")
-    axs[0].plot(Semper_M,Semper_counts,label='SEMPER 1.4GHz model (Giulietti +2025)',color='green')
-    axs[0].plot(TRECS_M,TRECS_count,label='T-RECS model (Bonaldi +2023)',color='orange')
-    axs[0].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz Bondi fitted (Bondi +2008)')
+    axs[0].plot(S_M,M_counts,label='Mancuso 2017 model (Mancuso +2017)',color="#F700CD",alpha=0.7)
+    axs[0].plot(Semper_M,Semper_counts,label='SEMPER 1.4GHz model (Giulietti +2025)',color='green',alpha=0.7)
+    axs[0].plot(TRECS_M,TRECS_count,label='T-RECS model (Bonaldi +2023)',color='orange',alpha=0.7)
+    axs[0].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz Bondi fitted (Bondi +2008)',alpha=0.7)
     axs[0].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
-    axs[0].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.9,markersize=8)
-    axs[0].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=1,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
-    axs[0].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=1,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
+    axs[0].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.8,markersize=8)
+    axs[0].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
+    axs[0].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
     axs[0].set_xscale('log')
     axs[0].set_yscale('log')
     axs[0].set_ylim(1e-3, 1e4)
@@ -176,16 +170,16 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
                     label='MOSS2 Zwcl2341 uncorrected (This paper)')
     axs[1].errorbar(centres[1]*1e3, counts_norm[1]*completeness_corr[1], 
                     yerr=counts_err[1], xerr=deltaS[1],
-                    color='red', fmt='+', markersize=10, alpha=1,
+                    color='red', fmt='+', markersize=12, alpha=1,
                     label='MOSS2 Zwcl2341 corrected (This paper)')
-    axs[1].plot(S_M,M_counts,label='Mancuso model (Mancuso +2017)',color="#F700CD")
+    axs[1].plot(S_M,M_counts,label='Mancuso model (Mancuso +2017)',color="#F700CD",alpha=0.7)
     axs[1].plot(Semper_M,Semper_counts,label='SEMPER model (SEMPER +2025)',color='green',alpha=0.7)
     axs[1].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz (Bondi +2008)',alpha=0.7)
     axs[1].plot(TRECS_M,TRECS_count,label='T-RECS model (TRECS +2023)',color='orange')
     axs[1].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
-    axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.9,markersize=8)
-    axs[1].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=1,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
-    axs[1].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=1,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
+    axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.8,markersize=8)
+    axs[1].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
+    axs[1].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
     axs[1].set_xscale('log')
     axs[1].set_yscale('log')
     axs[1].set_ylim(1e-3, 1e4)
@@ -197,7 +191,6 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     axs[1].set_title('Zwcl2341', fontsize=18)
     axs[1].tick_params(axis='both', which='major', labelsize=12)
     axs[1].tick_params(axis='both', which='minor', labelsize=12)
-
     plt.tight_layout()
     plt.savefig(f'/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/Source_Counts.png',
                 bbox_inches='tight', pad_inches=0.1, dpi=300)
@@ -239,11 +232,11 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     # plt.close()
 
     with open("A2631_source_counts.txt", "w") as file:
-        for c, d, n, counts, err, x, y, z in zip(centres[0],deltaS[0], numbers[0],counts_norm[0], counts_err[0], completeness_corr[0],resolution_corr[0], 1-false_detect_corr[0] ):
-            file.write(f"{c*1e3} {d*1e3} {n} {counts} {err} {x} {y} {z}  \n")
+        for c, d, n, counts, err, x,y in zip(centres[0],deltaS[0], numbers[0],counts_norm[0], counts_err[0], completeness_corr[0],resolution_corr[0] ):
+            file.write(f"{c*1e3} {d*1e3} {n} {counts} {err} {x} {y}  \n")
     with open("Zwcl2341_source_counts.txt", "w") as file:
-        for c, d, n, counts, err, x, y,z in zip(centres[1],deltaS[1], numbers[1],counts_norm[1], counts_err[1], completeness_corr[1],resolution_corr[1],1-false_detect_corr[1] ):
-            file.write(f"{c*1e3} {d*1e3} {n} {counts} {err} {x} {y} {z}  \n")
+        for c, d, n, counts, err, x,y in zip(centres[1],deltaS[1], numbers[1],counts_norm[1], counts_err[1], completeness_corr[1],resolution_corr[1] ):
+            file.write(f"{c*1e3} {d*1e3} {n} {counts} {err} {x} {y} \n")
 
 if __name__ == "__main__":
     outname='/home/kincaid/Desktop/Saraswati_codes/plots/'
@@ -267,10 +260,10 @@ if __name__ == "__main__":
     deltaS_array=[]
     numbers_array=[]
     for name in names:
-        resolution_bias_file=name+'_resolution_bias_correction.txt'
+        resolution_bias_file='resolution_interp_func.pkl'
         completeness_file = name+'/'+"visib_correction_cut.txt"
         false_detection_file='false_detection_correction.txt'
-        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_eddington_corr_srl.fits'  
+        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_resolution_corr_srl.fits'  
         print( 'Real catalog is',real_catalog )
         centres,counts_norm,counts_err,deltaS, num=get_counts(real_catalog,nbins)
         numbers_array.append(num)
@@ -282,8 +275,6 @@ if __name__ == "__main__":
         completeness_corr_array.append(completeness_corr)
         resolution_corr=resolution_bias_correction(resolution_bias_file, centres)
         resolution_corr_array.append(resolution_corr)
-        false_detect_corr=false_detection_correction(false_detection_file)
-        false_detect_corr_array.append(false_detect_corr)
-    corrections(numbers_array,deltaS_array,centres_array,counts_norm_array,counts_err_array,source_count_literature, source_count_literature_DEEP,source_count_literature_SuperCLASS,completeness_corr_array, false_detect_corr_array, resolution_corr_array )  #calcaulte the ratio of recovered/injected in each bin
+    corrections(numbers_array,deltaS_array,centres_array,counts_norm_array,counts_err_array,source_count_literature, source_count_literature_DEEP,source_count_literature_SuperCLASS,completeness_corr_array, resolution_corr_array )  #calcaulte the ratio of recovered/injected in each bin
     
     
