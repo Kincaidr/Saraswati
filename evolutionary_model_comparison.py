@@ -13,7 +13,9 @@ def format_no_decimal(x, pos):
 # Apply to axes
 
 TRECS_area=25
-HSC_area=1.6
+HSC_area=1.65
+MIGHTEE_area=(1.04)**2
+
 def HSC_table(table):
     flux = table['Total_flux']*1e3  # Convert to mJy
     mask_flux_HSC = (flux > flux_min) & (flux < flux_max)
@@ -38,24 +40,37 @@ def redshift_table(flux_min, flux_max):
     redshift_AGN = Model_table['redshift'][mask_flux & mask_AGN & mask_z]
     return A2631_redshift_HSC,Zwcl2341_redshift_HSC, redshift_all, redshift_SFR, redshift_AGN
 
+def redshift_table_Mightee(flux_min, flux_max):
+    MIGHTEE_table = Table.read('/home/kincaid/Desktop/Saraswati_codes/catalogs/MIGHTEE_catalog.fits')
+    flux= MIGHTEE_table['S_INT14']*1e3  # Convert to mJy
+    redshift= MIGHTEE_table['Redshift']
+    mask_z = (redshift > 0) & (redshift < 4)
+    mask_flux = (flux > flux_min) & (flux < flux_max)
+    redshift_MIGHTEE = redshift[mask_flux & mask_z ]
+    return redshift_MIGHTEE
 
-flux_bins = [(0.1, 0.2), (0.2, 0.4), (0.4, 1), (1, 2), (2, 20), (20, 100)]
+flux_bins = [(0.1, 0.2), (0.2, 0.3), (0.3, 0.4), (0.4, 0.5), (0.5, 1), (1, 10)]
 fig, axes = plt.subplots(2, 3, figsize=(15, 7), sharey=False)
-bins=[50,40,40,10,10,8   ]
-bins_curve=[20,20,20,12,10,7  ]
+bins=[15,15,10,10,10,8 ]
+bins_curve=[8,8,8,8,8,6  ]
 for i, (flux_min, flux_max) in enumerate(flux_bins):
     row, col = divmod(i, 3)
     ax = axes[row, col]
     A2631_redshift_HSC,Zwcl2341_redshift_HSC, redshift_all, redshift_SFR, redshift_AGN = redshift_table(flux_min, flux_max)
-    print('Total N all',len(redshift_all))
-    print('Total N A2631',len(A2631_redshift_HSC))
-    print('Total N Zwcl2341',len(Zwcl2341_redshift_HSC))
+    MIGHTEE_Z=redshift_table_Mightee(flux_min, flux_max)
+    print('Total N all',len(redshift_all)/TRECS_area)
+    print('Total N A2631',len(A2631_redshift_HSC)/HSC_area)
+    print('Total N Zwcl2341',len(Zwcl2341_redshift_HSC)/HSC_area)
+    print('Total N MIGHTEE COSMOS',len(MIGHTEE_Z)/MIGHTEE_area)
     x1, y1 = np.histogram(A2631_redshift_HSC, bins=bins_curve[i], density=False, weights=np.ones_like(A2631_redshift_HSC) / HSC_area)
     x2, y2 = np.histogram(Zwcl2341_redshift_HSC, bins=bins_curve[i], density=False, weights=np.ones_like(Zwcl2341_redshift_HSC) / HSC_area)
+    x3,y3 = np.histogram(MIGHTEE_Z, bins=bins_curve[i], density=False, weights=np.ones_like(MIGHTEE_Z) / MIGHTEE_area)
     bin_centers1 = 0.5 * (y1[1:] + y1[:-1])
     bin_centers2 = 0.5 * (y2[1:] + y2[:-1])
+    bin_centers3 = 0.5 * (y3[1:] + y3[:-1])
     ax.plot(bin_centers1, x1, label='A2631', color='blue', linewidth=3)
     ax.plot(bin_centers2, x2, label='Zwcl2341', color='red', linewidth=3)
+    ax.plot(bin_centers3, x3, label='MIGHTEE COSMOS', color='black', linewidth=3,linestyle='dashed')
     ax.hist(redshift_all, bins=bins[i], alpha=1, color='green',label='Total (AGN + SFG)',
             density=False, weights=np.ones_like(redshift_all) / TRECS_area, histtype='barstacked' ,rwidth=0.8)
     ax.hist(redshift_AGN, bins=bins[i], alpha=1, color='purple', label='AGN',
@@ -72,7 +87,7 @@ for i, (flux_min, flux_max) in enumerate(flux_bins):
     if row ==1:
         ax.set_xlabel('Redshift',fontsize=17)
     if i == 0:
-        ax.legend(fontsize=15)
+        ax.legend(fontsize=14)
     if col == 0:
         ax.set_ylabel('N (deg$^{-2}$)', fontsize=17)
     else:

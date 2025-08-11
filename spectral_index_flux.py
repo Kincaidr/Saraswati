@@ -47,7 +47,7 @@ def plot(fluxes,SI):
     total_fluxes=np.array(total_fluxes[mask])
     nbins=10
     difflr,bin_centers,median_si,si_err=median_SI(total_fluxes,total_SI,nbins)
-    plt.figure(figsize=(12, 8)) 
+    plt.figure(figsize=(8, 6)) 
     plt.scatter(total_fluxes,total_SI,alpha=0.5)
     plt.errorbar(bin_centers,median_si,yerr=si_err,color='black',fmt='s',markersize=7,alpha=1 ,capsize=8, linewidth=2, markeredgecolor='black',markeredgewidth=1.5 )
     plt.ylabel(r"Spectral Index $\alpha$ ", size=23)
@@ -59,9 +59,9 @@ def plot(fluxes,SI):
     plt.tick_params(axis='both', which='major', labelsize=22, length=5, width=1)
     plt.tick_params(axis='both', which='minor', labelsize=22, length=5, width=1)
     plt.xscale('log')
-    plt.savefig('plots/spectral_index_flux.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
+    plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/spectral_index_flux.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
     plt.show()
-
+    return total_SI, total_fluxes, bin_centers, median_si, si_err
 
 if "__main__":
   SI=[]
@@ -70,8 +70,7 @@ if "__main__":
   for name in names:
     path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/plots/'
     real_cat = '/home/kincaid/Desktop/Saraswati_codes/'+name+'/spectral/SI_cross-match_new.fits'
-
     all_fluxes,spectral_index=find_spectral_index(real_cat)
     SI.append(spectral_index)
     fluxes.append(all_fluxes)
-  plot(fluxes, SI)
+  total_SI, total_fluxes, bin_centers, median_si, si_err=plot(fluxes, SI)

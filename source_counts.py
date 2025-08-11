@@ -8,7 +8,7 @@ from SEMPER_source_counts import SEMPER_SFG_AGN_counts
 from TRECS_source_counts import TRECS_counts
 import pickle
 
-def scale_flux(flux):
+def scale_flux(flux,data_freq,counts_freq=1400, Spectral_Index=-0.7):
  counts_freq=1400
  Spectral_Index=-0.7
  data_freq=325
@@ -169,13 +169,13 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
                     color='#DA6969', fmt='o', markersize=4, alpha=1,
                     label='MOSS2 Zwcl2341 uncorrected (This paper)')
     axs[1].errorbar(centres[1]*1e3, counts_norm[1]*completeness_corr[1], 
-                    yerr=counts_err[1], xerr=deltaS[1],
+                    yerr=counts_err[1]*resolution_corr[1], xerr=deltaS[1],
                     color='red', fmt='+', markersize=12, alpha=1,
                     label='MOSS2 Zwcl2341 corrected (This paper)')
     axs[1].plot(S_M,M_counts,label='Mancuso model (Mancuso +2017)',color="#F700CD",alpha=0.7)
     axs[1].plot(Semper_M,Semper_counts,label='SEMPER model (SEMPER +2025)',color='green',alpha=0.7)
     axs[1].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz (Bondi +2008)',alpha=0.7)
-    axs[1].plot(TRECS_M,TRECS_count,label='T-RECS model (TRECS +2023)',color='orange')
+    axs[1].plot(TRECS_M,TRECS_count,label='T-RECS model (Bonaldi +2023)',color='orange')
     axs[1].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
     axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.8,markersize=8)
     axs[1].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
@@ -263,7 +263,7 @@ if __name__ == "__main__":
         resolution_bias_file='resolution_interp_func.pkl'
         completeness_file = name+'/'+"visib_correction_cut.txt"
         false_detection_file='false_detection_correction.txt'
-        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_resolution_corr_srl.fits'  
+        real_catalog =  '/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_eddington_corr_srl.fits'  
         print( 'Real catalog is',real_catalog )
         centres,counts_norm,counts_err,deltaS, num=get_counts(real_catalog,nbins)
         numbers_array.append(num)
