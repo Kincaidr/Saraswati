@@ -84,13 +84,13 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
     x2_superCLASS=SuperCLASS_lit[:,1]
     xc_superCLASS=SuperCLASS_lit[:,2]
     N_superCLASS=SuperCLASS_lit[:,4]
-    flux1=scale_flux(x1_superCLASS)*1e-3
-    flux2=scale_flux(x2_superCLASS)*1e-3
-    flux_xc=scale_flux(xc_superCLASS)*1e-3
-    flux_xc=(flux1+flux2)/2
-    difflr_superCLASS=flux2-flux1
-    survey_area_CLASS=6.5
-    centres_CLASS, deltaS_CLASS, num, counts_norm_CLASS=norm(N_superCLASS,difflr_superCLASS,survey_area_CLASS,flux_xc)
+    # flux1=scale_flux(x1_superCLASS)*1e-3
+    # flux2=scale_flux(x2_superCLASS)*1e-3
+    # flux_xc=scale_flux(xc_superCLASS)*1e-3
+    # flux_xc=(flux1+flux2)/2
+    # difflr_superCLASS=flux2-flux1
+    # survey_area_CLASS=6.5
+    #centres_CLASS, deltaS_CLASS, num, counts_norm_CLASS=norm(N_superCLASS,difflr_superCLASS,survey_area_CLASS,flux_xc)
     DEEP_lit=np.loadtxt(source_count_literature_DEEP)
     x_DEEP=(10**DEEP_lit[:,0])
     y_DEEP=(10**DEEP_lit[:,1])*np.sqrt(x_DEEP)
@@ -141,16 +141,16 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
 
     axs[0].errorbar(centres[0]*1e3, counts_norm[0]*completeness_corr[0], 
                     yerr=counts_err[0], xerr=deltaS[0],
-                    color='blue', fmt='+', markersize=12, alpha=1,
+                    color='blue', fmt='+', markersize=16, alpha=1,
                     label='MOSS2 A2631 corrected (This paper)')
     axs[0].plot(S_M,M_counts,label='Mancuso 2017 model (Mancuso +2017)',color="#F700CD",alpha=0.7)
     axs[0].plot(Semper_M,Semper_counts,label='SEMPER 1.4GHz model (Giulietti +2025)',color='green',alpha=0.7)
     axs[0].plot(TRECS_M,TRECS_count,label='T-RECS model (Bonaldi +2023)',color='orange',alpha=0.7)
     axs[0].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz Bondi fitted (Bondi +2008)',alpha=0.7)
-    axs[0].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
-    axs[0].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.8,markersize=8)
-    axs[0].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
-    axs[0].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
+    axs[0].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.2)
+    axs[0].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.5,markersize=8)
+    axs[0].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=0.4,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
+    axs[0].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=0.4,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
     axs[0].set_xscale('log')
     axs[0].set_yscale('log')
     axs[0].set_ylim(1e-3, 1e4)
@@ -170,16 +170,16 @@ def corrections(numbers,deltaS,centres,counts_norm,counts_err,source_count_liter
                     label='MOSS2 Zwcl2341 uncorrected (This paper)')
     axs[1].errorbar(centres[1]*1e3, counts_norm[1]*completeness_corr[1], 
                     yerr=counts_err[1]*resolution_corr[1], xerr=deltaS[1],
-                    color='red', fmt='+', markersize=12, alpha=1,
+                    color='red', fmt='+', markersize=16, alpha=1,
                     label='MOSS2 Zwcl2341 corrected (This paper)')
     axs[1].plot(S_M,M_counts,label='Mancuso model (Mancuso +2017)',color="#F700CD",alpha=0.7)
     axs[1].plot(Semper_M,Semper_counts,label='SEMPER model (SEMPER +2025)',color='green',alpha=0.7)
     axs[1].plot(S,10**SCs_Bondi(S),label='COSMOS 1.4GHz (Bondi +2008)',alpha=0.7)
     axs[1].plot(TRECS_M,TRECS_count,label='T-RECS model (Bonaldi +2023)',color='orange')
-    axs[1].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.5)
-    axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.8,markersize=8)
-    axs[1].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
-    axs[1].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=0.8,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
+    axs[1].errorbar(x_lit,y_lit,yerr=[y_err+var,x_err-var], fmt='*',color='grey',label='de Zotti 1.4GHz compilation (de Zotti +2010)',alpha=0.2)
+    axs[1].errorbar(x_DEEP*1e3,y_DEEP,yerr=[y_err_DEEP,x_err_DEEP], fmt='x',color='black',label='DEEP2 1.28GHz (Mauch +2019)',alpha=0.5,markersize=8)
+    axs[1].errorbar(MeerKAT_XMM_LSS[:,0]*1e-3,MeerKAT_XMM_LSS[:,1],color="#BBBE16",yerr=[MeerKAT_XMM_LSS[:,2],MeerKAT_XMM_LSS[:,3]],markersize=6,alpha=0.4,label='MIGHTEE XMM LSS 1.4GHz (Hale +2022)' ,fmt='d')
+    axs[1].errorbar(MeerKAT_COSMOS[:,0]*1e-3,MeerKAT_COSMOS[:,1],color='green',yerr=[MeerKAT_COSMOS[:,2],MeerKAT_COSMOS[:,3]],markersize=6,alpha=0.4,label='MIGHTEE COSMOS 1.4GHz (Hale +2022)' ,fmt='^')
     axs[1].set_xscale('log')
     axs[1].set_yscale('log')
     axs[1].set_ylim(1e-3, 1e4)

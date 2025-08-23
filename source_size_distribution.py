@@ -100,7 +100,7 @@ if "__main__":
     colors=['blue','red']
     color_median='cyan'
     threshold=5
-    fig, axs = plt.subplots(1, 2, figsize=(17, 7), sharey=True)
+    fig, axs = plt.subplots(1, 2, figsize=(8, 6), sharey=True)
     for i,name in enumerate(names):
         cat=Table.read('/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'+name+'_flux_corr_srl.fits')
         plot(cat, bmaj, bmin, sigma_high[i],sigma_low[i],axs[i],colors[i],alpha_beta_array[i])

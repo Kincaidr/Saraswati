@@ -37,7 +37,6 @@ def constraint(params, x,y):
 #     return (coverage - target)**2 + 0.1 * penalty
 
 def optimization(catalog,rms,initial_cond, method):
-   
     cat= Table.read(catalog)
     flux_total=cat['Total_flux']
     flux_peak=cat['Peak_flux']
@@ -104,30 +103,14 @@ def plot_curve(catalog, rms, results, method, ax, color, label):
     ax.set_xscale('log')
     ax.set_yscale('log')
     ax.set_xlim([3, 1000])
-    ax.set_ylim([0.3, 100])
+    ax.set_ylim([0.4, 30])
     ax.set_xlabel(r'$S_P/\sigma$', fontsize=22)
     ax.set_ylabel(r'$S_T/ S_P$', fontsize=22)
-    ax.tick_params(axis='both', which='major', labelsize=12, length=5, width=1)
-    ax.tick_params(axis='both', which='minor', labelsize=12, length=5, width=1)
+    ax.tick_params(axis='both', which='major', labelsize=16, length=5, width=1)
+    ax.tick_params(axis='both', which='minor', labelsize=16, length=5, width=1)
     ax.legend(fontsize=10)
     return unresolved_mask
 
-# def flux_correction(catalog,rms, results, output_cat):
-#     cat= Table.read(catalog)
-#     x0=results[0]
-#     x1=results[1] 
-#     flux_total=cat['Total_flux']
-#     flux_peak=cat['Peak_flux']
-#     y=flux_total/flux_peak
-#     x=flux_peak/rms
-#     curve_real=func(x0,x1,x)
-#     curve_real_inverse=1/curve_real
-#     unresolved_mask= (y < curve_real) & (y >curve_real_inverse)
-#     cat['Maj'][unresolved_mask]=0
-#     cat['Min'][unresolved_mask]=0
-#     cat['Total_flux'][unresolved_mask]=cat['Peak_flux'][unresolved_mask]
-#     corrected_cat=name+'_flux_corr_srl.fits'
-#     cat.write(output_cat+corrected_cat,format='fits', overwrite=True)
 
 def flux_correction(catalog,unresolved_mask,output_cat):
     cat= Table.read(catalog)

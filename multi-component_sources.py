@@ -8,7 +8,7 @@ def multi_component(catalog_path,catalog):
     
     table=Table.read(catalog)
     S_code=table['S_Code']
-    mask=(S_code=='M') | (S_code=='C')
+    mask=(S_code=='M') | (S_code=='C') 
     table_new=table[mask]
     S_code=table_new['S_Code']
     RA=table_new['RA']
@@ -66,7 +66,7 @@ def multi_component(catalog_path,catalog):
 
 
 if "__main__":
-    name='Zwcl2341'
+    name='A2631'
     catalog_path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/'
-    catalog=catalog_path+name+'_srl.fits'
+    catalog=catalog_path+name+'_resolution_corr_srl.fits'
     num=multi_component(catalog_path,catalog)

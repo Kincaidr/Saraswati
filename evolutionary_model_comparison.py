@@ -51,8 +51,8 @@ def redshift_table_Mightee(flux_min, flux_max):
 
 flux_bins = [(0.1, 0.2), (0.2, 0.3), (0.3, 0.4), (0.4, 0.5), (0.5, 1), (1, 10)]
 fig, axes = plt.subplots(2, 3, figsize=(15, 7), sharey=False)
-bins=[15,15,10,10,10,8 ]
-bins_curve=[8,8,8,8,8,6  ]
+bins=      [25,15,12,10,7,5 ]
+bins_curve=[15,15,12,8,7,5  ]
 for i, (flux_min, flux_max) in enumerate(flux_bins):
     row, col = divmod(i, 3)
     ax = axes[row, col]

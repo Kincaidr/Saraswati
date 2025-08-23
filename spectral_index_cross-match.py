@@ -17,18 +17,18 @@ def find_spectral_index(real_cat):
     return(spectral_index)
 
 def plot(SI):
-    
     plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(10, 8))
     plt.hist(SI[1], bins=30, color='red', alpha=1, density=False)
-    plt.hist(SI[0], bins=30, color='blue', alpha=1, density=False)
+    plt.hist(SI[0], bins=30, color='blue', alpha=0.5, density=False)
     plt.xlabel(r"Spectral Index $\alpha$ ", size=23)
     plt.ylabel("Number of Sources", size=23)
-    plt.axvline(np.median(SI[0]), color='blue', linestyle='dashed', label=rf'A2631, $\alpha \sim $ {np.median(SI[0]):.2f}')
-    plt.axvline(np.median(SI[1]), color='red', linestyle='dashed', label=rf'Zwcl2341, $\alpha \sim $ {np.median(SI[1]):.2f}')
-    plt.legend(fontsize=17)
+    plt.axvline(np.median(SI[0]), color='blue', linestyle='dashed', label=rf'A2631, $\alpha \sim $ {np.median(SI[0]):.2f}',linewidth=2)
+    plt.axvline(np.median(SI[1]), color='red', linestyle='dashed', label=rf'Zwcl2341, $\alpha \sim $ {np.median(SI[1]):.2f}',linewidth=2)
+    plt.legend(fontsize=20)
     plt.tick_params(axis='both', which='major', labelsize=18, length=5, width=1)
     plt.tick_params(axis='both', which='minor', labelsize=18, length=5, width=1)
-    plt.savefig('plots/Spectral_Index_Distribution.png', bbox_inches='tight', pad_inches=0.1)
+    plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/Spectral_Index_Distribution.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
     plt.show()
 
 
