@@ -103,10 +103,10 @@ def plot(peakes,ids,fluxes,SI,AGN_SFR_NED_cat):
     axes[0].set_xlim(total_fluxes.min(), 100)
     axes[0].axhline(-1, color='red', linestyle='dotted', linewidth=3)
     axes[0].axhline(-0.3, color='red', linestyle='dotted', linewidth=3)
-    axes[0].tick_params(axis='both', which='major', labelsize=18, length=5, width=1)
-    axes[0].tick_params(axis='both', which='minor', labelsize=18, length=5, width=1)
+    axes[0].tick_params(axis='both', which='major', labelsize=18, length=6, width=1)
+    axes[0].tick_params(axis='both', which='minor', labelsize=18, length=6, width=1)
     axes[0].set_xscale('log')
-    axes[0].legend(fontsize=17)
+    axes[0].legend(fontsize=18)
 
     # Right: loud and quiet
     axes[1].scatter(total_fluxes_loud, total_SI_loud, alpha=0.8, color='orange', s=70, marker='+', label=r'$L_{1.4 \text{GHz}}> 10^{24}$ (RL)')
@@ -120,10 +120,10 @@ def plot(peakes,ids,fluxes,SI,AGN_SFR_NED_cat):
     axes[1].set_xlim(total_fluxes.min(), 100)
     axes[1].axhline(-1, color='red', linestyle='dotted', linewidth=3)
     axes[1].axhline(-0.3, color='red', linestyle='dotted', linewidth=3)
-    axes[1].tick_params(axis='both', which='major', labelsize=18, length=5, width=1)
-    axes[1].tick_params(axis='both', which='minor', labelsize=18, length=5, width=1)
+    axes[1].tick_params(axis='both', which='major', labelsize=18, length=6, width=1)
+    axes[1].tick_params(axis='both', which='minor', labelsize=18, length=6, width=1)
     axes[1].set_xscale('log')
-    axes[1].legend(fontsize=17)
+    axes[1].legend(fontsize=18)
 
     plt.tight_layout()
     plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/spectral_index_flux_AGN_SFG.png', bbox_inches='tight', pad_inches=0.1, dpi=300)
