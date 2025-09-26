@@ -29,7 +29,6 @@ def astrometry_VLASS(MeerKAT_NVSS_cat):
         plt.ylim(-4,4)
         plt.axvline(np.mean(delta_DEC),linestyle='dashed',color='black')
         plt.axhline(np.mean(delta_RA),linestyle='dashed',color='black')
-
         plt.axvline(np.mean(delta_DEC), color="k", linestyle="--", alpha=0.3,
             label="MeerKAT offset to VLASS $\Delta \\alpha , \Delta\delta$={0:.2f}\",{1:.2f}\"".format(np.mean(delta_RA),np.mean(delta_DEC)))
 
@@ -44,8 +43,8 @@ def astrometry_VLASS(MeerKAT_NVSS_cat):
         print('mean in DEC is',np.mean(delta_DEC) )
         plt.xlabel(r'$\delta_{MeerAKT} - \delta_{VLASS}$ (arcsec)',fontsize=22)
         plt.ylabel(r'$\alpha_{MeerAKT} - \alpha_{VLASS}$ (arcsec)',fontsize=22)
-        plt.tick_params(axis='both', which='major', direction='in', length=8, width=1.5, labelsize=22)
-        plt.tick_params(axis='both', which='minor', direction='in', length=4, width=1, labelsize=22)
+        plt.tick_params(axis='both', which='major', direction='in', length=8, width=1.5, labelsize=17)
+        plt.tick_params(axis='both', which='minor', direction='in', length=4, width=1, labelsize=17)
         plt.legend(fontsize=17)
         plt.tight_layout()
         plt.savefig('/home/kincaid/Desktop/MOSS2_paper/paper/Figures/plots/VLASS_astrometry.png', bbox_inches='tight', pad_inches=0.1,dpi=300)
