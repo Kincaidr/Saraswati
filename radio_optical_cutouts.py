@@ -84,8 +84,8 @@ def get_decals(file_name, pos, width,height, pixmax=3000, justone=None):
             
 
 if __name__ == "__main__":
-    name='A2631'
-    sigma=10e-6
+    name='Zwcl2341'
+    sigma=11e-6
     catalog_path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/catalogs/multi_component_cat.fits'
     fits_image='/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/mypipelinerun_ABELL2631_4-MFS-image.pbcor.fits'#mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor.fits'
     output_path='/home/kincaid/Desktop/Saraswati_codes/'+name+'/images/cutouts/'

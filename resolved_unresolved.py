@@ -94,21 +94,25 @@ def plot_curve(catalog, rms, results, method, ax, color, label):
 
     # Plot using passed axis
     ax.plot(t, curve_theory, linewidth=2, color='black')
-    ax.plot(t, curve_theory_inverse, linewidth=2, color='black')
-    ax.axhline(y=1, color='red', linestyle='--')
+    ax.plot(t, curve_theory_inverse, linewidth=3, color='black')
+    ax.axhline(y=1, color='green', linestyle='--', linewidth=3)
 
-    ax.scatter(x[unresolved_mask], y[unresolved_mask], alpha=0.5, s=12, color='green')
+    ax.scatter(x[unresolved_mask], y[unresolved_mask], alpha=0.5, s=12, color='grey')
     ax.scatter(x[resolved_mask], y[resolved_mask], alpha=0.5, s=12, color=color)
-    ax.set_title(label, fontsize=16)
+    #ax.set_title(label, fontsize=16)
     ax.set_xscale('log')
     ax.set_yscale('log')
     ax.set_xlim([3, 1000])
     ax.set_ylim([0.4, 30])
-    ax.set_xlabel(r'$S_P/\sigma$', fontsize=22)
+    # Remove x label only from the first plot
+    if ax.get_subplotspec().is_first_row():
+        ax.set_xlabel('')
+    else:
+        ax.set_xlabel(r'$S_P/\sigma$', fontsize=22)
     ax.set_ylabel(r'$S_T/ S_P$', fontsize=22)
-    ax.tick_params(axis='both', which='major', labelsize=16, length=5, width=1)
-    ax.tick_params(axis='both', which='minor', labelsize=16, length=5, width=1)
-    ax.legend(fontsize=10)
+    ax.tick_params(axis='both', which='major', labelsize=16, length=8, width=1.5)
+    ax.tick_params(axis='both', which='minor', labelsize=16, length=4, width=1)
+    #ax.legend(fontsize=10)
     return unresolved_mask
 
 
@@ -122,13 +126,14 @@ def flux_correction(catalog,unresolved_mask,output_cat):
     print(f"Flux corrected catalog written to {output_cat+corrected_cat}")
 
 if __name__ == "__main__":
-    names = ['A2631', 'Zwcl2341']
+    names_cat = ['A2631', 'Zwcl2341']
+    names = ['A2631', 'ZwCl2341']
     colors = ['blue', 'red']
     initial_conds = [[1.03, 1.4], [1.01, 1.7]]
     rms_values = [16e-6, 11e-6]  # Adjust if needed
     fig, axs = plt.subplots(2, 1, figsize=(8, 12), sharey=True)
 
-    for i, name in enumerate(names):
+    for i, name in enumerate(names_cat):
         catalogs_path = f"/home/kincaid/Desktop/Saraswati_codes/{name}/catalogs/"
         catalog = catalogs_path + name + "_cut_srl.fits"
         results = optimization(catalog, rms_values[i], initial_conds[i], method='Powell')

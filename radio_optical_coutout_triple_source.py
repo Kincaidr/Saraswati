@@ -27,16 +27,14 @@ def get_fitsimage(fits_image):
     return new_fits_image
 
 
-
 def cutouts(fits_image,output_path,catalog):
-
     fits_image=get_fitsimage(fits_image)
     width,height=250,250
     # source_ids1=[1152,1153]
     # source_ids2=[1152,1154]
     #source_ids1=[875,876]
-    source_ids1 =[345,347]
-    source_ids2=[345,346]
+    source_ids1 =[345,346]
+    source_ids2=[346,347]
     # source_ids1 =[633,635]
     # source_ids2=[634,635]
     #source_ids1=[1161,1162]
@@ -60,7 +58,7 @@ def cutouts(fits_image,output_path,catalog):
     ra2,dec2=table['RA'][mask2],table['DEC'][mask2]
     ra3,dec3=table['RA2'][mask2],table['DEC2'][mask2]
     breakpoint()
-    coord1 = SkyCoord(ra=ra2, dec=dec2, unit=(u.deg, u.deg), frame='icrs')
+    coord1 = SkyCoord(ra=ra1, dec=dec1, unit=(u.deg, u.deg), frame='icrs')
     image_name=output_path+ f'rgb_cutout_triple_source_{source_ids1[0]}_{source_ids1[1]}_{source_ids2[1]}.jpg'
     optical_name=output_path+f'optical_cutout_{source_ids1[0]}_{source_ids1[1]}_{source_ids2[1]}.fits'
     optical_image = get_decals(optical_name, coord1, width, height)
@@ -72,7 +70,7 @@ def cutouts(fits_image,output_path,catalog):
     img.show_contour(fits_image, colors='lightblue', linewidths=0.6, alpha=1.0, levels=levels, smooth=1)
     img.show_circles(ra, dec, radius=0.0003, edgecolor='lime', lw=1)
     img.show_circles(ra1, dec1, radius=0.0003, edgecolor='lime', lw=1)
-    #img.show_circles(ra2, dec2, radius=0.0003, edgecolor='lime', lw=1)
+    img.show_circles(ra2, dec2, radius=0.0003, edgecolor='lime', lw=1)
     img.show_circles(ra3, dec3, radius=0.0003, edgecolor='lime', lw=1)
     img.axis_labels.set_font(size=15)
     img.add_scalebar(20/3600)
@@ -93,7 +91,7 @@ def get_decals(file_name, pos, width,height, pixmax=3000, justone=None):
     if op.exists(file_name): 
         print("You've already made this file")
         return file_name
-    fname = 'cutout.fits?ra={}&dec={}&layer=hsc-dr3&pixscale={}&width={}&height={}'.format(pos.ra.deg, pos.dec.deg, pixscale,width, height)
+    fname = 'cutout.fits?ra={}&dec={}&layer=hsc-dr3&pixscale={}&width={}&height={}'.format(pos.dec.deg, pos.ra.deg, pixscale,width, height)
     
     url = 'https://www.legacysurvey.org/viewer/{}'.format(fname)
     #url = 'https://www.legacysurvey.org/viewer/cutout.fits?ra='+str(pos.ra.value)+'&dec='+str(pos.dec.value)+'&layer=hsc-dr3&&pixscale=0.26&size=150'    

@@ -84,7 +84,7 @@ if __name__ == "__main__":
     target_beam=10
     original_beam=5
     pix_size=1.5
-    name='A2631'
+    name='Zwcl2341'
     output_stacked='/home/kincaid/Desktop/Saraswati_codes/A2631/catalogs/A2631_FIRST_stacked_srl.fits'
     output='/home/kincaid/Desktop/Saraswati_codes/A2631/images/cutouts/'
     FIRST_region_file='/home/kincaid/Desktop/Saraswati_codes/grid_coordinates.txt'
@@ -96,7 +96,7 @@ if __name__ == "__main__":
         file_name=get_cutout(ra, dec)
         convolved_filename=convovle_cutout(file_name)
         convolved_filename=trim_image(convolved_filename)
-        output_cat=output+f'FIRST_srl_{i}.fits'
+        output_cat=output+f'{name}_FIRST_srl_{i}.fits'
         try:
             output_cat=catalog_generation(convolved_filename, output_cat)
         except RuntimeError:

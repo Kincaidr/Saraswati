@@ -2,12 +2,12 @@ from astropy.coordinates import SkyCoord
 import astropy.units as u
 
 # Parameters
-start_coord = SkyCoord('23:41:41.3736 +1:13:29.197', unit=(u.hourangle, u.deg))
+#start_coord = SkyCoord('23:41:41.3736 +1:13:29.197', unit=(u.hourangle, u.deg))
+start_coord = SkyCoord('23:47:38.2129 +1:19:46.539', unit=(u.hourangle, u.deg))
 n_ra_steps = 5  # rows down (you can change this)
 n_dec_steps = 6
   # columns across (you can change this)
 step_size_deg = 0.5 # 30 arcmin = 0.5 deg
-
 coords = []
 
 for ra_step in range(n_ra_steps):
