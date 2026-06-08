@@ -16,7 +16,7 @@ import json
 #     return(f)
 
 def func(a,b,x):
-    f=a+b/x
+    f=a+b/(x)
     return(f)
 
 def constraint(params, x,y):
@@ -28,7 +28,6 @@ def constraint(params, x,y):
     return val
 
 def optimization(catalog,rms,initial_cond, method):
-   
     cat= Table.read(catalog)
     flux_total=cat['Total_flux']
     flux_peak=cat['Peak_flux']
@@ -53,8 +52,7 @@ def optimization(catalog,rms,initial_cond, method):
     print('x1',x1)
     return(results)
 
-def plot_curve(catalog,rms, results, method, output_plot):
-
+def plot_curve(catalog,rms, results, method):
     cat= Table.read(catalog)
     flux_total=cat['Total_flux']
     flux_peak=cat['Peak_flux']
@@ -63,7 +61,7 @@ def plot_curve(catalog,rms, results, method, output_plot):
     x1=results[1] 
     y=flux_total/flux_peak
     x=flux_peak/rms
-    source_tot=len(x)
+    source_tot=len(cat)
     t = np.logspace(0.1, 3)
     curve_theory=func(x0,x1,t)
     curve_theory_inverse=1/curve_theory
@@ -81,7 +79,6 @@ def plot_curve(catalog,rms, results, method, output_plot):
     print("unresolved fraction",(total_unresolved/source_tot)*100)
     print("resolved fraction",(total_resolved/source_tot)*100)
     
-    #fig,ax = plt.figure(figsize=(13, 10))
     fig,ax=plt.subplots(figsize=(8, 6))
     #ax.fill_between(t,curve_theory,curve_theory_inverse,alpha=0.6,label='unresolved sources')
     plt.plot(t,curve_theory,linewidth=2,color='black')
@@ -89,10 +86,10 @@ def plot_curve(catalog,rms, results, method, output_plot):
     plt.axhline(y=1,color='r',linestyle='--')
     plt.scatter(x[unresolved_mask],y[unresolved_mask],alpha=0.5,s=12,color='green')
     plt.scatter(x[resolved_mask],y[resolved_mask],alpha=0.5,s=12,color='blue')
-    plt.xlabel(r'$S_P/\sigma$',fontsize=20)
-    plt.ylabel(r'$S_T/ S_P$',fontsize=20)
-    plt.tick_params(axis='both', which='major', labelsize=18, length=5, width=1)  # Increase size of major tick labels
-    plt.tick_params(axis='both', which='minor', labelsize=18, length=5, width=1)
+    plt.xlabel(r'$S_P/\sigma$',fontsize=22)
+    plt.ylabel(r'$S_T/ S_P$',fontsize=22)
+    plt.tick_params(axis='both', which='major', labelsize=18, length=8, width=1)  # Increase size of major tick labels
+    plt.tick_params(axis='both', which='minor', labelsize=18, length=4, width=1)
     plt.xscale('log')
     plt.yscale('log')
     #plt.title( rf'$solver = {method}, resolved = {total_resolved}, unresolved = {total_unresolved}, a = {x0:.3f}, b = {x1:.3f}$', fontsize=10) 
@@ -107,7 +104,6 @@ def plot_curve(catalog,rms, results, method, output_plot):
 
 
 def flux_correction(catalog,rms, results, output_cat):
-
     cat= Table.read(catalog)
     x0=results[0]
     x1=results[1] 
@@ -129,11 +125,10 @@ def read_config(config_path):
         return json.load(f)
 
 if __name__ == "__main__":
-
-    name='A2631'
+    name='ZwCl2341'
     catalogs="/home/kincaid/Desktop/Saraswati_codes/"+name+"/catalogs/"
     plots="/home/kincaid/Desktop/Saraswati_codes/"+name+"/plots/"
-    rms = 10e-6
+    rms = 16e-6
     method='Powell'#Powell','CG','BFGS','L-BFGS-B','TNC','COBYLA', 'Nelder-Mead'] 
     #initial_cond=[3.2,-0.9]
     #initial_cond=[1.09,2.7]  #99%

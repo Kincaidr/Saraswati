@@ -7,7 +7,7 @@ import numpy as np
 
 name='A2631'
 path=name+'/catalogs/'
-cat1=name+'/catalogs/'+name+'_srl.fits'
+cat1=name+'/catalogs/'+name+'_cut_srl.fits'
 multi_comp_cat=path+'/multi_component_cat.fits'
 table1 = Table.read(cat1)
 table2 = Table.read(multi_comp_cat)

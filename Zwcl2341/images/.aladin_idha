@@ -1,0 +1,714 @@
+<?xml version="1.0"?>
+<!DOCTYPE VOTABLE SYSTEM "http://us-vo.org/xml/VOTable.dtd">
+<VOTABLE ID="v1.0">
+<RESOURCE name="Observation_Group">
+<TABLE ID="Observation_Group">
+<DESCRIPTION> This is a subset of images
+belonging to a survey, an experiment,
+and organised according to the same
+common criterion. e.g. exemple of
+criterion: color or wavelength,
+polarimetry, etc... exemple of
+Observation_Group: POSSII band J,
+DENIS band K, etc..
+</DESCRIPTION>
+<FIELD ID="Selection_Criterion" name="Selection_Criterion" datatype="char">
+<DESCRIPTION> Sampled Parameter
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="Selection-Range" name="Selection-Range" datatype="char">
+<DESCRIPTION> Constraint on sampled parameter
+</DESCRIPTION>
+</FIELD>
+<DATA><TABLEDATA>
+</TABLEDATA></DATA>
+</TABLE>
+<RESOURCE name="Observation">
+<TABLE ID="Observation">
+<DESCRIPTION>
+This resource describes list of processed observations 
+</DESCRIPTION>
+<FIELD ID="Observation_Name" name="Observation_Name" datatype="char" ucd="ID_IMAGE">
+<DESCRIPTION>
+Name of the Observation
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="ReferenceNumber" name="ReferenceNumber" datatype="char" ucd="ID_IMAGE">
+<DESCRIPTION>
+Reference Number of the Image
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="Size_alpha" name="Size_alpha" datatype="float" precision="7" width="11" unit="deg" ucd="INST_DET_SIZE">
+<DESCRIPTION>
+Observation range in alpha (angular) 
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="Size_delta" name="Size_delta" datatype="float" precision="F7" width="11" unit="deg" ucd="INST_DET_SIZE">
+<DESCRIPTION>
+Observation range in delta (angular) 
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="PixelSize" name="Angular Pixel Size"  datatype="float" unit ="deg">
+<DESCRIPTION>
+Pixel size measured in sky units
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="Origin" name="Origin" datatype="char">
+<DESCRIPTION>
+Data provider references
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="OriginalCoding " name="OriginalCoding" datatype="char">
+<DESCRIPTION>
+Image coding provided by the data producer
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="AvailableCodings" name="AvailableCodings" datatype="char">
+<DESCRIPTION>
+Codings which may be  produced on the fly
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="alpha" name="CentralPoint_RA" ucd="POS_EQ_RA_MAIN"  datatype="float" precision="F7" width="11" unit="deg">
+<DESCRIPTION>
+Position of center	
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="delta" name="CentralPoint_DEC" ucd="POS_EQ_DEC_MAIN"  datatype="float" precision="F7" width="11" unit="deg">
+<DESCRIPTION>
+Position of center	
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="date"  name="DateAndTime" datatype="char">
+<DESCRIPTION>
+Observation date
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="AP" name="Position Angle"  datatype="float" precision="F7"  width="11" unit="deg">
+<DESCRIPTION>
+Position Angle of th Y axis
+</DESCRIPTION>
+</FIELD>
+<DATA><TABLEDATA>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.app.restored.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.fits.img.rgd.fits</TD><TD></TD><TD>0.7972222</TD><TD>0.7972222</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91492</TD><TD>0.32273668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pb.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor_new.fits</TD><TD></TD><TD>1.4045833</TD><TD>1.4679166</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91605</TD><TD>0.33479166</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.wt.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP2.app.residual.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.0.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.1.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.2.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>image_DI_Clustered.tessel.reg</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+<TR><TD>image_DI_Clustered.tessel_facet1.reg</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+<TR><TD>injected_cat_sim_1_bin_27.fits</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+<TR><TD>kms_regions_X.reg</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pb.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor_full.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pb.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pbcor.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.wt.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>sim_1_bin_26_srl.fits</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+<TR><TD>sim_1_bin_28_srl.fits</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+<TR><TD>simulated_image_real_sim_1_bin_28.fits</TD><TD></TD><TD>1.4679166</TD><TD>1.4045833</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.88437</TD><TD>0.30312496</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>simulated_image_test_sim_1_bin_28.fits</TD><TD></TD><TD>1.4679166</TD><TD>1.4045833</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.88437</TD><TD>0.30312496</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Target_N_ZwCl2341.1_0_EVLA_S_final.image.tt0.fits</TD><TD></TD><TD>0.7972222</TD><TD>0.7972222</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91492</TD><TD>0.32273668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Z_res_map.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Z_rms_map.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341.tessel_facet_all.reg</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+<TR><TD>Zwcl2341_cut_res_map.fits</TD><TD></TD><TD>1.4045833</TD><TD>1.4679166</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91605</TD><TD>0.33479166</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341_cut_res_map_masked.fits</TD><TD></TD><TD>1.4045833</TD><TD>1.4679166</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91605</TD><TD>0.33479166</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341_cut_rms_map.fits</TD><TD></TD><TD>1.4045833</TD><TD>1.4679166</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91605</TD><TD>0.33479166</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341_full_res_map.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341_full_rms_map.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341_inverted.fits</TD><TD></TD><TD>2.5</TD><TD>2.5</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>-4.0841665</TD><TD>0.33041668</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341_res_map.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>Zwcl2341_rms_map.fits</TD><TD></TD><TD>2.53125</TD><TD>2.53125</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91562</TD><TD>0.330625</TD><TD></TD><TD>0.0</TD>
+</TR>
+<TR><TD>zwcl_5sources.reg</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD>
+</TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+<RESOURCE name="StorageMapping">
+<TABLE ID="StorageMapping">
+<DESCRIPTION>
+This resource describes list of processed observations 
+</DESCRIPTION>
+<FIELD ref="Observation_Name" >
+</FIELD>
+<FIELD ID="Cutout" name="Organisation"  datatype="char">
+<DESCRIPTION>
+Status of cutout availability 
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="number" name="NumberOfPatches"  datatype="int">
+<DESCRIPTION>
+Number of subimages
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="size" name="Maximum size"  datatype="int">
+<DESCRIPTION>
+Maximum size 
+</DESCRIPTION>
+</FIELD>
+<DATA><TABLEDATA>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.app.restored.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.fits.img.rgd.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pb.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor_new.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.wt.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP2.app.residual.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.0.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.1.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.2.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.tessel.reg</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>image_DI_Clustered.tessel_facet1.reg</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>injected_cat_sim_1_bin_27.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>kms_regions_X.reg</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pb.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor_full.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pb.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pbcor.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.wt.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>sim_1_bin_26_srl.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>sim_1_bin_28_srl.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>simulated_image_real_sim_1_bin_28.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>simulated_image_test_sim_1_bin_28.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Target_N_ZwCl2341.1_0_EVLA_S_final.image.tt0.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Z_res_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Z_rms_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341.tessel_facet_all.reg</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_cut_res_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_cut_res_map_masked.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_cut_rms_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_full_res_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_full_rms_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_inverted.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_res_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>Zwcl2341_rms_map.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>zwcl_5sources.reg</TD><TD></TD><TD></TD><TD></TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+<RESOURCE name="StoredImage">
+<TABLE ID="StoredImage">
+<DESCRIPTION>
+This resource describes the actual retrieved file 
+</DESCRIPTION>
+<FIELD ref="Observation_Name" >
+</FIELD>
+<FIELD ID="Location" name="LinktoPixels" datatype="char">
+<DESCRIPTION>
+File location
+</DESCRIPTION>
+</FIELD>
+<DATA><TABLEDATA>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.app.restored.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP.app.restored.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP.int.restored.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.fits.img.rgd.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP.int.restored.fits.img.rgd.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pb.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP.int.restored.pb.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor_new.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP.int.restored.pbcor_new.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP.int.restored.wt.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP.int.restored.wt.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP2.app.residual.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP2.app.residual.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.0.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.0.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.1.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.1.fits</TD></TR>
+<TR><TD>image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.2.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.DeeperDeconv.AP4.cube.int.restored.2.fits</TD></TR>
+<TR><TD>image_DI_Clustered.tessel.reg</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.tessel.reg</TD></TR>
+<TR><TD>image_DI_Clustered.tessel_facet1.reg</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/image_DI_Clustered.tessel_facet1.reg</TD></TR>
+<TR><TD>injected_cat_sim_1_bin_27.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/injected_cat_sim_1_bin_27.fits</TD></TR>
+<TR><TD>kms_regions_X.reg</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/kms_regions_X.reg</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.fits</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pb.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pb.fits</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor.fits</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor_full.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-image.pbcor_full.fits</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.fits</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pb.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pb.fits</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pbcor.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.pbcor.fits</TD></TR>
+<TR><TD>mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.wt.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/mypipelinerun_ZwCl2341_1_p_0000_4-MFS-residual.wt.fits</TD></TR>
+<TR><TD>sim_1_bin_26_srl.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/sim_1_bin_26_srl.fits</TD></TR>
+<TR><TD>sim_1_bin_28_srl.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/sim_1_bin_28_srl.fits</TD></TR>
+<TR><TD>simulated_image_real_sim_1_bin_28.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/simulated_image_real_sim_1_bin_28.fits</TD></TR>
+<TR><TD>simulated_image_test_sim_1_bin_28.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/simulated_image_test_sim_1_bin_28.fits</TD></TR>
+<TR><TD>Target_N_ZwCl2341.1_0_EVLA_S_final.image.tt0.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Target_N_ZwCl2341.1_0_EVLA_S_final.image.tt0.fits</TD></TR>
+<TR><TD>Z_res_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Z_res_map.fits</TD></TR>
+<TR><TD>Z_rms_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Z_rms_map.fits</TD></TR>
+<TR><TD>Zwcl2341.tessel_facet_all.reg</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341.tessel_facet_all.reg</TD></TR>
+<TR><TD>Zwcl2341_cut_res_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_cut_res_map.fits</TD></TR>
+<TR><TD>Zwcl2341_cut_res_map_masked.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_cut_res_map_masked.fits</TD></TR>
+<TR><TD>Zwcl2341_cut_rms_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_cut_rms_map.fits</TD></TR>
+<TR><TD>Zwcl2341_full_res_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_full_res_map.fits</TD></TR>
+<TR><TD>Zwcl2341_full_rms_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_full_rms_map.fits</TD></TR>
+<TR><TD>Zwcl2341_inverted.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_inverted.fits</TD></TR>
+<TR><TD>Zwcl2341_res_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_res_map.fits</TD></TR>
+<TR><TD>Zwcl2341_rms_map.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/Zwcl2341_rms_map.fits</TD></TR>
+<TR><TD>zwcl_5sources.reg</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/zwcl_5sources.reg</TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+</RESOURCE>
+<RESOURCE name="ObservingProgram">
+<TABLE ID="ObservingProgram">
+<DESCRIPTION>
+This is a few resource information for the
+ObservingProgram 
+</DESCRIPTION>
+<FIELD ID="Name" name="Name" datatype="char" ucd="ID_SURVEY">
+<DESCRIPTION> ObservingProgram Name </DESCRIPTION>
+</FIELD>
+<FIELD ID="Organisation" name="Organisation" datatype="char" ucd="CURATOR">
+<DESCRIPTION> Name of Organisation(s) 
+performing Observing Program
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="Begin" name="beginning_date" datatype="char">
+<DESCRIPTION> Begin date of the survey
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="End" name="end date" datatype="char">
+<DESCRIPTION> End date of Observing program
+</DESCRIPTION>
+</FIELD>
+<FIELD ID="SpectralDomain" name="SpectralCoverageName" datatype="char">
+<DESCRIPTION> General spectral domain (Optical X-ray ...)
+</DESCRIPTION>
+</FIELD>
+<DATA><TABLEDATA>
+<TR><TD>cutouts</TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+<RESOURCE name="Observation_Group">
+<TABLE ref="Observation_Group">
+<DATA><TABLEDATA>
+<TR><TD>Group</TD><TD>group0</TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+<RESOURCE name="Observation">
+<TABLE ref="Observation">
+<DATA><TABLEDATA>
+<TR><TD>optical_cutout_0_1.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.60898</TD><TD>0.26883835</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1016_1017.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.01736</TD><TD>0.6529156</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1019_1020.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.0129</TD><TD>-0.2002272</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1073_1074.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.99237</TD><TD>0.15613985</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1080_1081.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.9915</TD><TD>0.16935764</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1092_1093.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.98694</TD><TD>0.1969321</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1094_1095.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.98526</TD><TD>0.8667591</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1118_1119.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.97107</TD><TD>0.9545121</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1125_1126.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.97314</TD><TD>0.7223542</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1161_1162.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.9545</TD><TD>0.2523043</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1161_1162_1163.fits</TD><TD></TD><TD>0.020833334</TD><TD>0.020833334</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.95255</TD><TD>0.2528604</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1161_1163.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.95285</TD><TD>0.2558693</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1162_1163.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.95477</TD><TD>0.2553079</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_116_117.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.4369</TD><TD>0.60864425</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_116_118.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.4328</TD><TD>0.6077206</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_117_118.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.43527</TD><TD>0.60836643</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1202_1203.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.94232</TD><TD>0.7739064</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1261_1262.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.91907</TD><TD>0.34547493</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1280_1281.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.90735</TD><TD>0.7673747</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1281_1282.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.90872</TD><TD>0.76435846</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1295_1296.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.8996</TD><TD>0.56467706</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1295_1297.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.89673</TD><TD>0.5671912</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1296_1297.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.90115</TD><TD>0.5639946</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1315_1316.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.89642</TD><TD>0.32686627</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1320_1321.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.89554</TD><TD>-0.33052245</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1369_1370.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.8744</TD><TD>-0.1530873</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1459_1460.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.8432</TD><TD>0.87491196</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1552_1553.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.80945</TD><TD>-0.009311855</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1559_1560.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.80182</TD><TD>-0.35985875</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1602_1603.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.79077</TD><TD>0.27317205</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1630_1631.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.77432</TD><TD>0.06960763</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1651_1652.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.76202</TD><TD>0.17521727</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1690_1691.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.74152</TD><TD>0.2308445</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1695_1696.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.73923</TD><TD>0.58062947</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_16_17.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.57275</TD><TD>0.4711205</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1706_1707.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.73273</TD><TD>0.32380992</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1745_1746.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.7232</TD><TD>0.6037456</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_174_175.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.39294</TD><TD>0.613449</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1851_1890.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.65897</TD><TD>0.44798353</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1878_1879.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.65503</TD><TD>-0.26814118</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_189_190.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.38022</TD><TD>0.07703715</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_1912_1929.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.6361</TD><TD>0.5855284</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2014_2015.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.59598</TD><TD>0.61115736</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_201_202.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.37134</TD><TD>0.45060042</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2027_2028.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.58887</TD><TD>0.7344446</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2029_2030.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.5858</TD><TD>-0.2548034</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2035_2036.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.58243</TD><TD>0.2839557</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2074_2075.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.56104</TD><TD>0.81637263</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_20_21.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.56552</TD><TD>0.4318369</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2128_2129.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.51538</TD><TD>0.5457052</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2146_2147.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.50168</TD><TD>0.24137117</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2162_2163.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.48703</TD><TD>0.1755319</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2241_2243.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.39175</TD><TD>0.09196393</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_2255_2256.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>355.35736</TD><TD>0.5533055</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_253_254.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.33713</TD><TD>0.909147</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_260_261.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.33292</TD><TD>-0.0019846717</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_290_291.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.31302</TD><TD>0.46574354</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_30_31.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.54282</TD><TD>0.62723535</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_310_311.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.2997</TD><TD>0.10324108</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_311_312.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.29767</TD><TD>0.10445593</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_394_395.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.26102</TD><TD>0.7542274</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_40_41.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.52274</TD><TD>0.28922424</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_420_421.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.25195</TD><TD>0.7743982</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_447_448.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.23926</TD><TD>0.37364262</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_447_449.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.23752</TD><TD>0.37380198</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_448_449.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.24075</TD><TD>0.37392592</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_461_462.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.2362</TD><TD>0.46284598</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_461_463.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.23175</TD><TD>0.46426877</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_462_463.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.23346</TD><TD>0.46376085</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_485_486.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.23062</TD><TD>0.06371778</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_502_503.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.21896</TD><TD>0.6956538</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_514_515.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.21613</TD><TD>0.8682677</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_54_55.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.5003</TD><TD>0.3000971</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_553_600.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.1861</TD><TD>-0.08234122</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_588_589.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.18155</TD><TD>0.75790924</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_594_595.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.17975</TD><TD>-0.22948138</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_598_599.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.17807</TD><TD>0.60528123</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_602_603.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.17834</TD><TD>-0.20028032</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_62_63.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.49515</TD><TD>0.746577</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_643_644.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.16226</TD><TD>-0.22742096</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_678_679.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.14374</TD><TD>-0.13744633</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_750_751.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.1118</TD><TD>0.92254484</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_763_764.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.1114</TD><TD>0.7993429</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_783_784.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.1034</TD><TD>0.12802301</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_849_850.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.07672</TD><TD>-0.13705415</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_875_876.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.06848</TD><TD>-0.109172344</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_875_876_877.fits</TD><TD></TD><TD>0.025</TD><TD>0.025</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.06982</TD><TD>-0.10985251</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_876_877.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.06595</TD><TD>-0.10732328</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_950_951.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.04373</TD><TD>0.8945308</TD><TD></TD><TD>-0.0</TD>
+</TR>
+<TR><TD>optical_cutout_990_991.fits</TD><TD></TD><TD>0.0131</TD><TD>0.0131</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>356.024</TD><TD>-0.09248684</TD><TD></TD><TD>-0.0</TD>
+</TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+<RESOURCE name="StorageMapping">
+<TABLE ref="StorageMapping">
+<DATA><TABLEDATA>
+<TR><TD>optical_cutout_0_1.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1016_1017.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1019_1020.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1073_1074.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1080_1081.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1092_1093.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1094_1095.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1118_1119.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1125_1126.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1161_1162.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1161_1162_1163.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1161_1163.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1162_1163.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_116_117.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_116_118.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_117_118.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1202_1203.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1261_1262.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1280_1281.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1281_1282.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1295_1296.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1295_1297.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1296_1297.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1315_1316.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1320_1321.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1369_1370.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1459_1460.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1552_1553.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1559_1560.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1602_1603.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1630_1631.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1651_1652.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1690_1691.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1695_1696.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_16_17.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1706_1707.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1745_1746.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_174_175.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1851_1890.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1878_1879.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_189_190.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_1912_1929.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2014_2015.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_201_202.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2027_2028.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2029_2030.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2035_2036.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2074_2075.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_20_21.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2128_2129.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2146_2147.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2162_2163.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2241_2243.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_2255_2256.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_253_254.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_260_261.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_290_291.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_30_31.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_310_311.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_311_312.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_394_395.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_40_41.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_420_421.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_447_448.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_447_449.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_448_449.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_461_462.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_461_463.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_462_463.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_485_486.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_502_503.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_514_515.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_54_55.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_553_600.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_588_589.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_594_595.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_598_599.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_602_603.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_62_63.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_643_644.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_678_679.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_750_751.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_763_764.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_783_784.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_849_850.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_875_876.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_875_876_877.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_876_877.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_950_951.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+<TR><TD>optical_cutout_990_991.fits</TD><TD></TD><TD></TD><TD></TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+<RESOURCE name="StoredImage">
+<TABLE ref="StoredImage">
+<DATA><TABLEDATA>
+<TR><TD>optical_cutout_0_1.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_0_1.fits</TD></TR>
+<TR><TD>optical_cutout_1016_1017.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1016_1017.fits</TD></TR>
+<TR><TD>optical_cutout_1019_1020.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1019_1020.fits</TD></TR>
+<TR><TD>optical_cutout_1073_1074.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1073_1074.fits</TD></TR>
+<TR><TD>optical_cutout_1080_1081.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1080_1081.fits</TD></TR>
+<TR><TD>optical_cutout_1092_1093.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1092_1093.fits</TD></TR>
+<TR><TD>optical_cutout_1094_1095.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1094_1095.fits</TD></TR>
+<TR><TD>optical_cutout_1118_1119.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1118_1119.fits</TD></TR>
+<TR><TD>optical_cutout_1125_1126.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1125_1126.fits</TD></TR>
+<TR><TD>optical_cutout_1161_1162.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1161_1162.fits</TD></TR>
+<TR><TD>optical_cutout_1161_1162_1163.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1161_1162_1163.fits</TD></TR>
+<TR><TD>optical_cutout_1161_1163.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1161_1163.fits</TD></TR>
+<TR><TD>optical_cutout_1162_1163.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1162_1163.fits</TD></TR>
+<TR><TD>optical_cutout_116_117.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_116_117.fits</TD></TR>
+<TR><TD>optical_cutout_116_118.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_116_118.fits</TD></TR>
+<TR><TD>optical_cutout_117_118.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_117_118.fits</TD></TR>
+<TR><TD>optical_cutout_1202_1203.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1202_1203.fits</TD></TR>
+<TR><TD>optical_cutout_1261_1262.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1261_1262.fits</TD></TR>
+<TR><TD>optical_cutout_1280_1281.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1280_1281.fits</TD></TR>
+<TR><TD>optical_cutout_1281_1282.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1281_1282.fits</TD></TR>
+<TR><TD>optical_cutout_1295_1296.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1295_1296.fits</TD></TR>
+<TR><TD>optical_cutout_1295_1297.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1295_1297.fits</TD></TR>
+<TR><TD>optical_cutout_1296_1297.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1296_1297.fits</TD></TR>
+<TR><TD>optical_cutout_1315_1316.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1315_1316.fits</TD></TR>
+<TR><TD>optical_cutout_1320_1321.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1320_1321.fits</TD></TR>
+<TR><TD>optical_cutout_1369_1370.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1369_1370.fits</TD></TR>
+<TR><TD>optical_cutout_1459_1460.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1459_1460.fits</TD></TR>
+<TR><TD>optical_cutout_1552_1553.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1552_1553.fits</TD></TR>
+<TR><TD>optical_cutout_1559_1560.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1559_1560.fits</TD></TR>
+<TR><TD>optical_cutout_1602_1603.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1602_1603.fits</TD></TR>
+<TR><TD>optical_cutout_1630_1631.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1630_1631.fits</TD></TR>
+<TR><TD>optical_cutout_1651_1652.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1651_1652.fits</TD></TR>
+<TR><TD>optical_cutout_1690_1691.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1690_1691.fits</TD></TR>
+<TR><TD>optical_cutout_1695_1696.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1695_1696.fits</TD></TR>
+<TR><TD>optical_cutout_16_17.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_16_17.fits</TD></TR>
+<TR><TD>optical_cutout_1706_1707.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1706_1707.fits</TD></TR>
+<TR><TD>optical_cutout_1745_1746.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1745_1746.fits</TD></TR>
+<TR><TD>optical_cutout_174_175.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_174_175.fits</TD></TR>
+<TR><TD>optical_cutout_1851_1890.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1851_1890.fits</TD></TR>
+<TR><TD>optical_cutout_1878_1879.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1878_1879.fits</TD></TR>
+<TR><TD>optical_cutout_189_190.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_189_190.fits</TD></TR>
+<TR><TD>optical_cutout_1912_1929.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_1912_1929.fits</TD></TR>
+<TR><TD>optical_cutout_2014_2015.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2014_2015.fits</TD></TR>
+<TR><TD>optical_cutout_201_202.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_201_202.fits</TD></TR>
+<TR><TD>optical_cutout_2027_2028.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2027_2028.fits</TD></TR>
+<TR><TD>optical_cutout_2029_2030.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2029_2030.fits</TD></TR>
+<TR><TD>optical_cutout_2035_2036.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2035_2036.fits</TD></TR>
+<TR><TD>optical_cutout_2074_2075.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2074_2075.fits</TD></TR>
+<TR><TD>optical_cutout_20_21.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_20_21.fits</TD></TR>
+<TR><TD>optical_cutout_2128_2129.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2128_2129.fits</TD></TR>
+<TR><TD>optical_cutout_2146_2147.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2146_2147.fits</TD></TR>
+<TR><TD>optical_cutout_2162_2163.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2162_2163.fits</TD></TR>
+<TR><TD>optical_cutout_2241_2243.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2241_2243.fits</TD></TR>
+<TR><TD>optical_cutout_2255_2256.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_2255_2256.fits</TD></TR>
+<TR><TD>optical_cutout_253_254.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_253_254.fits</TD></TR>
+<TR><TD>optical_cutout_260_261.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_260_261.fits</TD></TR>
+<TR><TD>optical_cutout_290_291.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_290_291.fits</TD></TR>
+<TR><TD>optical_cutout_30_31.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_30_31.fits</TD></TR>
+<TR><TD>optical_cutout_310_311.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_310_311.fits</TD></TR>
+<TR><TD>optical_cutout_311_312.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_311_312.fits</TD></TR>
+<TR><TD>optical_cutout_394_395.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_394_395.fits</TD></TR>
+<TR><TD>optical_cutout_40_41.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_40_41.fits</TD></TR>
+<TR><TD>optical_cutout_420_421.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_420_421.fits</TD></TR>
+<TR><TD>optical_cutout_447_448.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_447_448.fits</TD></TR>
+<TR><TD>optical_cutout_447_449.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_447_449.fits</TD></TR>
+<TR><TD>optical_cutout_448_449.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_448_449.fits</TD></TR>
+<TR><TD>optical_cutout_461_462.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_461_462.fits</TD></TR>
+<TR><TD>optical_cutout_461_463.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_461_463.fits</TD></TR>
+<TR><TD>optical_cutout_462_463.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_462_463.fits</TD></TR>
+<TR><TD>optical_cutout_485_486.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_485_486.fits</TD></TR>
+<TR><TD>optical_cutout_502_503.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_502_503.fits</TD></TR>
+<TR><TD>optical_cutout_514_515.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_514_515.fits</TD></TR>
+<TR><TD>optical_cutout_54_55.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_54_55.fits</TD></TR>
+<TR><TD>optical_cutout_553_600.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_553_600.fits</TD></TR>
+<TR><TD>optical_cutout_588_589.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_588_589.fits</TD></TR>
+<TR><TD>optical_cutout_594_595.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_594_595.fits</TD></TR>
+<TR><TD>optical_cutout_598_599.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_598_599.fits</TD></TR>
+<TR><TD>optical_cutout_602_603.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_602_603.fits</TD></TR>
+<TR><TD>optical_cutout_62_63.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_62_63.fits</TD></TR>
+<TR><TD>optical_cutout_643_644.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_643_644.fits</TD></TR>
+<TR><TD>optical_cutout_678_679.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_678_679.fits</TD></TR>
+<TR><TD>optical_cutout_750_751.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_750_751.fits</TD></TR>
+<TR><TD>optical_cutout_763_764.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_763_764.fits</TD></TR>
+<TR><TD>optical_cutout_783_784.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_783_784.fits</TD></TR>
+<TR><TD>optical_cutout_849_850.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_849_850.fits</TD></TR>
+<TR><TD>optical_cutout_875_876.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_875_876.fits</TD></TR>
+<TR><TD>optical_cutout_875_876_877.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_875_876_877.fits</TD></TR>
+<TR><TD>optical_cutout_876_877.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_876_877.fits</TD></TR>
+<TR><TD>optical_cutout_950_951.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_950_951.fits</TD></TR>
+<TR><TD>optical_cutout_990_991.fits</TD><TD>file:///home/kincaid/Desktop/Saraswati_codes/Zwcl2341/images/cutouts/optical_cutout_990_991.fits</TD></TR>
+</TABLEDATA></DATA>
+</TABLE>
+</RESOURCE>
+</RESOURCE>
+</RESOURCE>
+</VOTABLE>

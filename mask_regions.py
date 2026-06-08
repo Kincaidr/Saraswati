@@ -1,37 +1,39 @@
-
-
-
 import numpy as np
 from astropy.io import fits
 from astropy.wcs import WCS
-from regions import Regions, PixCoord
-from astropy.coordinates import SkyCoord
+from regions import Regions
+import matplotlib.pyplot as plt
 
-# Load FITS file
-
-fits_filename = "/home/kincaid/Desktop/Saraswati_codes/A2631/A2631_rms_map.fits"
-region_filename = "/home/kincaid/Desktop/Saraswati_codes/A2631/ds9.reg"
-
-hdul = fits.open(fits_filename)
-data = hdul[0].data[0,0,:,:]  # Assuming 2D image in primary HDU
-header = hdul[0].header
-wcs = WCS(header)  # Load WCS for coordinate transformations
-
-regions = Regions.read(region_filename, format="ds9")
-mask = np.zeros_like(data, dtype=bool)
+name='Zwcl2341'  # Change this to the desired cluster name
+path=f"/home/kincaid/Desktop/Saraswati_codes/{name}/flux_scale/"
+image_file = path+"Zwcl2341_FIRST_large.fits.img.conv.fits"
+output=path+'Zwcl2341_FIRST_large.fits.img.conv_mask.fits'
+with fits.open(image_file) as hdul:
+    data = hdul[0].data.squeeze()
+    header = hdul[0].header
+    wcs = WCS(header)
+    wcs = wcs.celestial
+region_file = "Zwcl_box_regions.reg"
+regions = Regions.read(region_file, format='ds9')
+mask = np.zeros(data.shape, dtype=bool)
 
 for region in regions:
-    if hasattr(region, "center"):  # Check if it has a SkyCoord center
-        skycoord = region.center   
-        x, y = wcs.celestial.world_to_pixel(skycoord)
-        # Convert to pixel coordinates
-        pixcoord = PixCoord(x=x, y=y)
-        region = region.to_pixel(wcs.celestial)
-        region_mask = region.to_mask(mode="center").to_image(data.shape)
-        mask |= region_mask.astype(bool)
+    try:
+        pixel_region = region.to_pixel(wcs)
+        region_mask = pixel_region.to_mask(mode='center')
 
+        if region_mask is not None:
+            mask_part = region_mask.to_image(data.shape)
+            if mask_part is not None:
+                mask |= mask_part.astype(bool)
+    except Exception as e:
+        print(f"Skipping region due to error: {e}")
 
-# Apply mask to the image
-data[mask] = np.nan    
-fits.writeto("masked_image.fits", data, header, overwrite=True)
-print("Mask applied and saved to masked_image.fits")
+# === Step 4: Apply the mask ===
+masked_data = np.array(data)
+masked_data[mask] = np.nan
+
+# === Step 5: Save masked image ===
+hdu = fits.PrimaryHDU(data=masked_data, header=header)
+hdu.writeto(output, overwrite=True)
+print(f"✅ Masked image saved as: {output}")
