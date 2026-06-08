@@ -1,8 +1,3 @@
-##Saraswati supercluster project: We use this area to share scripts relating to work involving the Saraswati supercluster.
+MOSS II: Mid-Frequency radio catalog of Saraswati core region scripts
 
-Data include:
-
-Deep MeerKAT pointings on largest core clusters and
-30 MeerKAT and uGMRT Pointings on larger supercluster region
-
-
+https://scixplorer.org/abs/2026MNRAS.547ag079K/abstract
