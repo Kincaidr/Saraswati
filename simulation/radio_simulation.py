@@ -358,7 +358,7 @@ def simulation(min_size,max_size,sim_images_path, number_sources, Range_x,data, 
     else:
         print(f"{rec_counts_file} does not exist.")
     for sim_no in range(no_of_simulations):
-        source_placement_box=place_sources_box(number_sources, size=30, min_distance=20, pix_size=pix_size, centre_x=centre_x, centre_y=centre_y)
+        source_placement_box=place_sources_box(number_sources, size=size, min_distance=20, pix_size=pix_size, centre_x=centre_x, centre_y=centre_y)
         print("Simulation_number is", sim_no)
         for bin_no in range(len(Range_x)-1):
             left_bin=Range_x[bin_no]
@@ -367,7 +367,7 @@ def simulation(min_size,max_size,sim_images_path, number_sources, Range_x,data, 
             flux_samples=get_source_fluxes(left_bin,right_bin,number_sources)
             output='sim_'+str(sim_no)+'_bin_'+str(bin_no)
             print("run for "+ output)
-            injected_catalog, simulated_image=injected_catalogs(min_size,max_size,flux_samples,sim_images_path, number_sources,source_placement, data, output) # Perform simulation and injected catalogs
+            injected_catalog, simulated_image=injected_catalogs(min_size,max_size,flux_samples,sim_images_path, number_sources,source_placement_box, data, output) # Perform simulation and injected catalogs
             recovered_catalog=recovered_catalogs(simulated_image, output) 
             ratio(recovered_catalog, centre, sim_no, nbins, false_detections, rec_counts_file)
 ##
@@ -377,6 +377,7 @@ if __name__ == "__main__":
     max_size = 30 # Maximum source size in simulation (arcsec)
     number_sources=500 # total number of sources simulated on each image
     no_of_simulations=1 # total number of simulations
+    size=30 # size of the box in which sources are placed in arcmin
     flux_min=0.03#minimum flux of sources in simualtion (mJy)
     flux_max=10 #maximum flux of sources in simualtion (mJy)
     nbins=30 #Number of bins you want to find the detected fraction
