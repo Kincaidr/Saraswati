@@ -358,7 +358,7 @@ def simulation(min_size,max_size,sim_images_path, number_sources, Range_x,data, 
     else:
         print(f"{rec_counts_file} does not exist.")
     for sim_no in range(no_of_simulations):
-        source_placement=place_sources(number_sources, xx, yy, min_distance=20, pix_size=pix_size)
+        source_placement_box=place_sources_box(number_sources, size=30, min_distance=20, pix_size=pix_size, centre_x=centre_x, centre_y=centre_y)
         print("Simulation_number is", sim_no)
         for bin_no in range(len(Range_x)-1):
             left_bin=Range_x[bin_no]
@@ -396,7 +396,7 @@ if __name__ == "__main__":
     pix_size=header['CDELT2']*3600
     BMAJ=BMAJ*3600
     BMIN=BMIN*3600
-    rec_counts_file = name+"_recovered_counts_table_cut.txt"
+    rec_counts_file = name+"_recovered_counts_table.txt"
     #This section is for circular cutout image, need to uncomment sources_placement_circle in simualtion function to use
     paddiv2=int(padding/2)
     xx=(paddiv2,paddiv2+original_image.shape[0])
